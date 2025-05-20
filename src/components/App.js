@@ -24,8 +24,8 @@ function App() {
                         <Link to="/page1">概览</Link>
                         <Link to="/page2">数据可视化</Link>
                         <Link to="/page3">分析报告</Link>
-                        <Link to="/page4">设置</Link>
-                        <Link to="/page5">帮助</Link>
+                        <Link to="/page4">和弦图</Link>
+                        <Link to="/page5">时间序列堆叠面积图</Link>
                     </div>
                     <div className='content'>
                         <Routes>
