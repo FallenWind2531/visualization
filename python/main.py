@@ -5,12 +5,23 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 
-file_path = '.\\material\\Global_Space_Exploration_Dataset.csv'
+space_file_path = '.\\python\\material\\Global_Space_Exploration_Dataset.csv'
 try:
-    df = pd.read_csv(file_path)
+    space_df = pd.read_csv(space_file_path)
     print("--- Loaded data successfully ---")
 except FileNotFoundError:
-    print(f"Error: file '{file_path}' not found.")
+    print(f"Error: file '{space_file_path}' not found.")
+    exit()
+except Exception as e:
+    print(f"Error: {e}")
+    exit()
+
+GDP_file_path = '.\\python\\material\\Global_GDP_Dataset.csv'
+try:
+    GDP_df = pd.read_csv(GDP_file_path)
+    print("--- Loaded data successfully ---")
+except FileNotFoundError:
+    print(f"Error: file '{GDP_file_path}' not found.")
     exit()
 except Exception as e:
     print(f"Error: {e}")
@@ -31,9 +42,12 @@ def bubble():
         })
         response.headers['Access-Control-Allow-Origin'] = '*'
         return response
-    year_country_means_df = df.groupby(['Year', 'Country'])[['Budget (in Billion $)', 'Duration (in Days)']].mean().reset_index()
+    GDP_long = GDP_df.melt(id_vars=['Country'], var_name='Year', value_name='GDP')
+    GDP_long['Year'] = GDP_long['Year'].astype(int)
+    df = pd.merge(space_df, GDP_long, on=['Country', 'Year'], how='left')
+    year_country_means_df = df.groupby(['Year', 'Country'])[['GDP', 'Budget (in Billion $)', 'Duration (in Days)']].mean().reset_index()
     if country == None:
-        result_df = year_country_means_df[year_country_means_df['Year'] == year][['Country', 'Budget (in Billion $)', 'Duration (in Days)']]
+        result_df = year_country_means_df[year_country_means_df['Year'] == year][['Country', 'GDP', 'Budget (in Billion $)', 'Duration (in Days)']]
         result_list = result_df.values.tolist()
         response = jsonify({
             "code": 200,
@@ -41,7 +55,7 @@ def bubble():
             "data": result_list
         })
     else:
-        result_df = year_country_means_df[year_country_means_df['Year'] == year][year_country_means_df['Country'] == country][['Country', 'Budget (in Billion $)', 'Duration (in Days)']]
+        result_df = year_country_means_df[year_country_means_df['Year'] == year][year_country_means_df['Country'] == country][['Country', 'GDP', 'Budget (in Billion $)', 'Duration (in Days)']]
         result_list = result_df.values.tolist()
         response = jsonify({
             "code": 200,
@@ -55,9 +69,9 @@ def bubble():
 @app.route('/api/v1/pie', methods=['GET'])
 def pie():
     country = request.args.get('country')
-    result_df_1 = df[df['Country'] == country].groupby(['Mission Type']).size().reset_index(name = 'count')
-    result_df_2 = df[df['Country'] == country].groupby(['Satellite Type']).size().reset_index(name = 'count')
-    result_df_3 = df[df['Country'] == country].groupby(['Technology Used']).size().reset_index(name = 'count')
+    result_df_1 = space_df[space_df['Country'] == country].groupby(['Mission Type']).size().reset_index(name = 'count')
+    result_df_2 = space_df[space_df['Country'] == country].groupby(['Satellite Type']).size().reset_index(name = 'count')
+    result_df_3 = space_df[space_df['Country'] == country].groupby(['Technology Used']).size().reset_index(name = 'count')
     result_list = [result_df_1.values.tolist(), result_df_2.values.tolist(), result_df_3.values.tolist()]
     response = jsonify({
         "code": 200,
@@ -76,8 +90,8 @@ def radar():
         'Medium': 3,
         'High': 5
     }
-    df['Environmental Impact-mapped'] = df['Environmental Impact'].map(ei_value_mapping)
-    result_df = df[df['Country'] == country].groupby('Country').agg(
+    space_df['Environmental Impact-mapped'] = space_df['Environmental Impact'].map(ei_value_mapping)
+    result_df = space_df[space_df['Country'] == country].groupby('Country').agg(
         Count=('Country', 'count'),
         Budget=('Budget (in Billion $)', 'mean'),
         Success_Rate=('Success Rate (%)', 'mean'),
@@ -97,7 +111,7 @@ def radar():
 @app.route('/api/v1/chord', methods=['GET'])
 def chord():
     country = request.args.get('country')
-    df_processed = df.copy()
+    df_processed = space_df.copy()
     df_processed['Collaborating Countries_list'] = df_processed['Collaborating Countries'].str.split(',')
     new_df = df_processed.explode('Collaborating Countries_list')[['Country', 'Collaborating Countries_list']].copy() # 只选取我们需要的列
     new_df.rename(columns={'Collaborating Countries_list': 'Collaborating Countries'}, inplace=True)
@@ -121,7 +135,7 @@ def chord():
 def stacked_area():
     type = request.args.get('type')
     if type == 'Satellite Type':
-        result_df = df.groupby(['Satellite Type', 'Year']).size().reset_index(name = 'count')
+        result_df = space_df.groupby(['Satellite Type', 'Year']).size().reset_index(name = 'count')
         result_list = result_df.values.tolist()
         response = jsonify({
             "code": 200,
@@ -129,7 +143,7 @@ def stacked_area():
             "data": result_list
         })
     elif type == 'Technology Used':
-        result_df = df.groupby(['Technology Used', 'Year']).size().reset_index(name = 'count')
+        result_df = space_df.groupby(['Technology Used', 'Year']).size().reset_index(name = 'count')
         result_list = result_df.values.tolist()
         response = jsonify({
             "code": 200,

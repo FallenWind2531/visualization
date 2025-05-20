@@ -123,7 +123,7 @@ Russia,2014,Re-engineered bottom-line algorithm,Manned,Mooreville,Navigation,40.
 China,2001,Robust background methodology,Unmanned,North Michelle,Communication,27.77,54,Nuclear Propulsion,Medium,"Russia, UK, India",100
 India,2012,Multi-layered static focus group,Manned,Marytown,Research,31.37,83,Solar Propulsion,Medium,China,292
 India,2018,Triple-buffered foreground middleware,Manned,Crystalstad,Weather,21.31,92,Nuclear Propulsion,High,"UAE, USA, Russia",148
-Japan,2014,User-centric dedicated data-warehouse,Manned,West Erin,Navigation,40.0,67,Solar Propulsion,Medium,"UAE, Israel, Japan",280
+Japan,2014,User-centric dedicated data-warehouse,Manned,West Erin,Navigation,40,67,Solar Propulsion,Medium,"UAE, Israel, Japan",280
 UK,2012,Assimilated 4thgeneration archive,Manned,Christinashire,Weather,43.63,96,AI Navigation,Medium,France,113
 USA,2014,Inverse directional parallelism,Manned,West Michelle,Navigation,29.22,85,AI Navigation,High,Israel,173
 Israel,2004,Down-sized bottom-line hierarchy,Unmanned,New Luis,Research,33.31,52,Solar Propulsion,Low,"Russia, Israel, Japan",337
@@ -360,7 +360,7 @@ UK,2006,Face-to-face methodical Internet solution,Manned,Russellville,Spy,34.7,6
 India,2014,Down-sized high-level analyzer,Unmanned,Port Gary,Research,19.84,50,Traditional Rocket,High,"Germany, China",20
 USA,2020,Organized executive capability,Manned,Port Jeffrey,Research,28.13,73,Traditional Rocket,Medium,"China, UK",342
 India,2009,Cross-platform 5thgeneration productivity,Manned,Sharonfort,Navigation,31.55,74,Reusable Rocket,Low,"UAE, China",63
-Israel,2016,Self-enabling 6thgeneration data-warehouse,Manned,Tuckerview,Navigation,25.0,56,Traditional Rocket,High,"UK, USA, China",147
+Israel,2016,Self-enabling 6thgeneration data-warehouse,Manned,Tuckerview,Navigation,25,56,Traditional Rocket,High,"UK, USA, China",147
 Israel,2009,De-engineered non-volatile algorithm,Unmanned,East Thomas,Weather,34.49,63,AI Navigation,Low,"Japan, Israel",239
 USA,2018,Centralized reciprocal complexity,Manned,South Dianeview,Weather,16.23,82,Reusable Rocket,High,"India, Germany",41
 Germany,2023,Multi-lateral 5thgeneration system engine,Manned,New Brendaport,Navigation,23.24,100,AI Navigation,Low,"India, Russia",62
@@ -458,12 +458,12 @@ Israel,2011,Innovative scalable focus group,Unmanned,North Susanbury,Navigation,
 UAE,2016,Virtual methodical Graphical User Interface,Manned,Lake Christopherfurt,Weather,44.95,70,Nuclear Propulsion,Low,UK,330
 UK,2020,Multi-lateral zero-defect time-frame,Unmanned,East Beth,Research,11.6,70,Reusable Rocket,High,"UAE, Germany",126
 Israel,2009,Horizontal next generation access,Unmanned,New Stephaniehaven,Research,2.48,67,Reusable Rocket,Low,"USA, China, Japan",106
-Russia,2002,Public-key composite challenge,Manned,Christianville,Research,22.0,91,Nuclear Propulsion,Medium,"Germany, Israel, India",85
+Russia,2002,Public-key composite challenge,Manned,Christianville,Research,22,91,Nuclear Propulsion,Medium,"Germany, Israel, India",85
 France,2001,Mandatory demand-driven moderator,Manned,Lake Amanda,Research,22.1,73,Nuclear Propulsion,Low,France,74
 UK,2023,Quality-focused multi-state database,Unmanned,East Christopherview,Research,47.66,92,Reusable Rocket,High,UAE,345
 USA,2013,Vision-oriented context-sensitive capability,Unmanned,Grossview,Research,39.74,58,Nuclear Propulsion,Low,"Israel, Germany",237
 China,2009,Profit-focused actuating time-frame,Unmanned,Porterchester,Communication,1.54,56,AI Navigation,High,"USA, France",262
-UK,2000,Monitored even-keeled solution,Unmanned,Samuelshire,Communication,27.0,52,Reusable Rocket,Low,"USA, Germany",224
+UK,2000,Monitored even-keeled solution,Unmanned,Samuelshire,Communication,27,52,Reusable Rocket,Low,"USA, Germany",224
 Israel,2020,Distributed tangible moratorium,Manned,South Christine,Communication,3.55,88,Reusable Rocket,Low,"Israel, Japan",242
 USA,2012,Compatible hybrid encryption,Unmanned,Flynnland,Weather,0.96,91,Reusable Rocket,Medium,Russia,166
 Israel,2012,Multi-channeled systemic process improvement,Manned,Henrytown,Communication,27.05,81,Traditional Rocket,Medium,"UAE, France, Germany",247
@@ -649,7 +649,7 @@ India,2019,Profit-focused bottom-line artificial intelligence,Unmanned,Cartershi
 India,2013,Decentralized client-server installation,Unmanned,Amyburgh,Spy,48.6,67,Solar Propulsion,Medium,"UAE, Germany",51
 Germany,2002,Team-oriented interactive benchmark,Unmanned,North Lisaburgh,Research,27.26,87,Reusable Rocket,High,"UK, UAE",351
 Israel,2014,Future-proofed logistical migration,Manned,North Vickie,Weather,4.22,94,Nuclear Propulsion,High,India,170
-USA,2005,User-friendly foreground conglomeration,Manned,Debbiefort,Weather,10.0,81,AI Navigation,High,"China, Japan, UAE",141
+USA,2005,User-friendly foreground conglomeration,Manned,Debbiefort,Weather,10,81,AI Navigation,High,"China, Japan, UAE",141
 Russia,2010,Ameliorated object-oriented approach,Unmanned,Crawfordland,Spy,9.45,65,Nuclear Propulsion,Medium,"Japan, UAE",322
 UAE,2022,Inverse modular structure,Manned,North Elizabeth,Weather,21.33,74,Traditional Rocket,Low,"UAE, USA, Russia",33
 UK,2020,Visionary foreground secured line,Manned,Lake Markberg,Spy,11.89,88,Traditional Rocket,High,"India, France, Russia",127
@@ -699,7 +699,7 @@ Japan,2021,Ameliorated human-resource data-warehouse,Manned,New Lauraburgh,Commu
 UAE,2005,Quality-focused optimal algorithm,Unmanned,Lake Christina,Weather,35.43,85,Traditional Rocket,High,USA,125
 China,2003,Fundamental disintermediate website,Unmanned,Mooreville,Weather,15.78,60,Nuclear Propulsion,Medium,"Germany, India",292
 UK,2005,Managed content-based flexibility,Unmanned,Suzanneshire,Communication,23.84,74,Solar Propulsion,Low,"UAE, USA",271
-UK,2010,Virtual multimedia open architecture,Unmanned,Benjaminburgh,Spy,13.0,71,Reusable Rocket,Low,"France, UK, Japan",212
+UK,2010,Virtual multimedia open architecture,Unmanned,Benjaminburgh,Spy,13,71,Reusable Rocket,Low,"France, UK, Japan",212
 Japan,2010,Intuitive homogeneous project,Manned,West Rachelview,Navigation,25.11,68,Traditional Rocket,High,China,21
 USA,2022,Object-based incremental database,Unmanned,Lawrencechester,Research,49.16,71,Nuclear Propulsion,Medium,"China, Japan",106
 USA,2003,Multi-channeled even-keeled interface,Unmanned,Andradehaven,Weather,46.87,56,Nuclear Propulsion,High,Japan,231
@@ -890,7 +890,7 @@ USA,2010,Integrated scalable policy,Manned,Port Angelaview,Spy,12.55,60,Reusable
 UAE,2024,Assimilated asymmetric approach,Unmanned,New Steven,Weather,23.98,59,AI Navigation,Low,"Japan, UK, UAE",129
 China,2006,Versatile zero administration encryption,Unmanned,New Madisonbury,Navigation,28.13,52,AI Navigation,Low,Russia,307
 UAE,2014,Balanced client-server core,Unmanned,Riveratown,Spy,43.49,63,Traditional Rocket,Low,"India, UK",215
-Russia,2023,Object-based incremental workforce,Unmanned,Port Hannah,Research,33.0,86,Reusable Rocket,High,"Germany, UK",315
+Russia,2023,Object-based incremental workforce,Unmanned,Port Hannah,Research,33,86,Reusable Rocket,High,"Germany, UK",315
 Russia,2011,Profit-focused scalable knowledge user,Manned,North Jesse,Research,38.13,100,Solar Propulsion,Medium,"Russia, UK, UAE",245
 USA,2009,Open-architected didactic website,Manned,Lopeztown,Communication,34.66,82,Solar Propulsion,Medium,"Germany, UK, USA",235
 UK,2018,Switchable empowering budgetary management,Unmanned,North Julianport,Spy,29.46,50,AI Navigation,Medium,India,265
@@ -1092,7 +1092,7 @@ Israel,2009,Centralized bandwidth-monitored matrix,Manned,South Alexis,Weather,9
 Japan,2017,Mandatory asymmetric success,Unmanned,Port Soniaport,Research,3.54,93,Reusable Rocket,Medium,"Russia, USA",318
 USA,2010,Persevering national framework,Manned,Port Karen,Spy,8.54,69,AI Navigation,Medium,Japan,29
 Japan,2014,Reactive 3rdgeneration data-warehouse,Unmanned,Samuelfort,Communication,41.14,84,AI Navigation,Low,"Russia, Japan, France",198
-UAE,2025,Cross-group multi-tasking frame,Manned,Hamiltonstad,Spy,6.0,60,Reusable Rocket,Medium,UK,168
+UAE,2025,Cross-group multi-tasking frame,Manned,Hamiltonstad,Spy,6,60,Reusable Rocket,Medium,UK,168
 India,2000,Managed context-sensitive core,Manned,New Daniel,Weather,20.12,67,Reusable Rocket,Low,France,243
 Israel,2022,Persistent multi-tasking concept,Manned,Davidburgh,Research,7.36,75,Reusable Rocket,High,Germany,229
 Japan,2013,Reduced global workforce,Manned,South Chrisview,Spy,10.21,76,Reusable Rocket,High,Germany,328
@@ -1123,7 +1123,7 @@ UAE,2012,Optimized bifurcated alliance,Unmanned,Kellytown,Spy,11.94,100,Traditio
 USA,2023,User-centric uniform methodology,Manned,Jameshaven,Navigation,36.33,94,Traditional Rocket,High,India,317
 France,2008,Compatible homogeneous benchmark,Unmanned,Martinezton,Communication,34.62,97,Solar Propulsion,Low,"Germany, UAE, UK",167
 Japan,2024,Team-oriented non-volatile firmware,Unmanned,West Staceyside,Navigation,35.88,93,Solar Propulsion,Medium,"France, UAE",76
-UK,2021,User-friendly clear-thinking projection,Unmanned,North Robertport,Communication,20.0,100,AI Navigation,High,"UAE, France",252
+UK,2021,User-friendly clear-thinking projection,Unmanned,North Robertport,Communication,20,100,AI Navigation,High,"UAE, France",252
 Israel,2011,Persistent full-range moratorium,Unmanned,East Kevinmouth,Communication,1.34,85,Reusable Rocket,Low,"USA, Japan, UK",255
 Israel,2022,Ameliorated real-time moratorium,Unmanned,East James,Navigation,8.81,78,Solar Propulsion,High,"France, China",20
 Germany,2018,Compatible static application,Unmanned,West Theresa,Weather,20.61,80,Solar Propulsion,High,"China, UK",343
@@ -1154,7 +1154,7 @@ Russia,2018,Right-sized transitional portal,Manned,Lake Cassandrabury,Communicat
 Germany,2019,Focused zero tolerance functionalities,Unmanned,North Eugeneborough,Research,39.19,74,Traditional Rocket,Medium,Japan,37
 India,2021,Inverse cohesive conglomeration,Unmanned,Kellerville,Navigation,8.92,84,Solar Propulsion,Low,"Germany, UAE, UK",126
 France,2017,Self-enabling human-resource interface,Manned,New Justin,Communication,29.35,76,Reusable Rocket,Low,China,97
-China,2014,Reduced high-level methodology,Unmanned,East Lisaberg,Weather,22.0,79,Solar Propulsion,Low,USA,180
+China,2014,Reduced high-level methodology,Unmanned,East Lisaberg,Weather,22,79,Solar Propulsion,Low,USA,180
 Japan,2001,Exclusive clear-thinking monitoring,Manned,Lowerybury,Weather,8.26,54,Solar Propulsion,Low,Russia,234
 Israel,2015,Inverse multi-state support,Manned,Cruzburgh,Weather,0.82,76,Solar Propulsion,High,"UAE, China, France",308
 Germany,2002,Streamlined cohesive alliance,Manned,North James,Weather,31.84,90,Nuclear Propulsion,High,"Germany, UK, France",185
@@ -1315,7 +1315,7 @@ UK,2012,Automated didactic alliance,Manned,West Lauraside,Spy,32.36,52,Reusable 
 France,2008,Adaptive modular structure,Manned,Stevenmouth,Navigation,18.52,88,Solar Propulsion,Low,UAE,283
 India,2022,Phased non-volatile utilization,Manned,Brianastad,Research,12.13,92,Reusable Rocket,High,UAE,125
 UK,2012,Face-to-face user-facing matrices,Unmanned,Gilmorestad,Weather,36.43,73,Nuclear Propulsion,High,"India, UK, USA",1
-France,2020,Vision-oriented directional hub,Manned,Mcclureburgh,Navigation,9.0,64,AI Navigation,High,"France, Israel, Germany",262
+France,2020,Vision-oriented directional hub,Manned,Mcclureburgh,Navigation,9,64,AI Navigation,High,"France, Israel, Germany",262
 France,2024,Visionary static process improvement,Unmanned,West Stevenstad,Spy,34.27,81,Traditional Rocket,Low,"UAE, Japan",303
 Japan,2001,User-friendly high-level initiative,Unmanned,Nicholasside,Spy,41.06,66,Reusable Rocket,Low,Israel,355
 UAE,2015,Front-line national focus group,Manned,Robertport,Spy,43.24,77,Traditional Rocket,Low,USA,344
@@ -1331,7 +1331,7 @@ India,2012,Persistent uniform superstructure,Manned,North Valerie,Navigation,11.
 UK,2004,Multi-layered system-worthy open system,Manned,Cookmouth,Research,17.97,89,Solar Propulsion,Medium,"UK, India",355
 Japan,2009,Virtual uniform moratorium,Manned,East Maryberg,Spy,36.96,61,AI Navigation,High,"China, Russia, Japan",88
 India,2020,Quality-focused uniform benchmark,Manned,New Elizabeth,Communication,33.8,65,Traditional Rocket,Medium,Japan,76
-Russia,2014,Visionary actuating middleware,Manned,Port Zacharyberg,Navigation,45.0,94,Reusable Rocket,Medium,"Japan, Israel, China",306
+Russia,2014,Visionary actuating middleware,Manned,Port Zacharyberg,Navigation,45,94,Reusable Rocket,Medium,"Japan, Israel, China",306
 UK,2024,Operative intermediate service-desk,Manned,North Nicholasmouth,Navigation,31.15,56,AI Navigation,Medium,Russia,349
 UK,2018,Switchable interactive middleware,Unmanned,West Mark,Navigation,20.17,88,Reusable Rocket,Low,Germany,362
 China,2001,Synergized fresh-thinking focus group,Manned,North Bonnieport,Navigation,45.49,72,Traditional Rocket,Medium,UAE,27
@@ -1383,7 +1383,7 @@ India,2015,Optimized encompassing paradigm,Manned,Patrickmouth,Weather,36.27,92,
 Russia,2011,Expanded user-facing toolset,Manned,Lake Spencerport,Navigation,47.63,57,Nuclear Propulsion,Low,"Japan, India, UAE",27
 UK,2023,Business-focused scalable forecast,Manned,Frostland,Research,10.38,59,Solar Propulsion,Low,Japan,146
 UAE,2008,Front-line transitional Graphical User Interface,Manned,Escobarchester,Navigation,14.39,96,Reusable Rocket,High,Germany,188
-UAE,2019,Open-source methodical synergy,Manned,West Jennifer,Spy,38.0,67,Solar Propulsion,High,"China, India",128
+UAE,2019,Open-source methodical synergy,Manned,West Jennifer,Spy,38,67,Solar Propulsion,High,"China, India",128
 Germany,2011,Customer-focused multi-tasking product,Unmanned,East Robert,Navigation,29.31,56,Nuclear Propulsion,High,"Russia, Israel",305
 China,2016,Front-line static installation,Unmanned,Wheelerchester,Spy,19.86,82,Reusable Rocket,Medium,"UAE, Russia",339
 USA,2011,Reverse-engineered cohesive adapter,Unmanned,Rivershaven,Research,24.27,59,Nuclear Propulsion,Low,Israel,356
@@ -1430,7 +1430,7 @@ Germany,2003,Implemented grid-enabled model,Unmanned,Kellyberg,Navigation,49.91,
 Russia,2002,Assimilated incremental frame,Manned,Johnburgh,Research,1.13,69,Nuclear Propulsion,High,"Israel, Japan, UAE",169
 Germany,2023,Sharable discrete alliance,Manned,Bradleyborough,Navigation,26.27,93,Nuclear Propulsion,High,"Japan, Russia, UK",111
 UK,2019,Organic incremental toolset,Unmanned,Brendaton,Weather,23.27,75,Solar Propulsion,Medium,India,167
-India,2010,Organized transitional core,Unmanned,North Harold,Weather,3.0,53,Nuclear Propulsion,Low,"Japan, USA",95
+India,2010,Organized transitional core,Unmanned,North Harold,Weather,3,53,Nuclear Propulsion,Low,"Japan, USA",95
 Russia,2012,Expanded mobile hub,Manned,Summersburgh,Weather,4.64,67,Solar Propulsion,High,"India, Germany",251
 Germany,2006,Up-sized user-facing success,Manned,Billytown,Research,3.1,63,Solar Propulsion,Low,"Israel, France, UK",270
 Germany,2005,Re-engineered bifurcated secured line,Manned,West Michael,Spy,29.13,85,Solar Propulsion,Medium,Germany,121
@@ -1450,7 +1450,7 @@ France,2004,Decentralized hybrid throughput,Manned,Benjaminland,Spy,25.21,76,Tra
 France,2024,Phased zero tolerance concept,Unmanned,Leonardburgh,Navigation,24.17,83,Traditional Rocket,Medium,"USA, UK, Japan",274
 Russia,2025,Multi-layered optimizing info-mediaries,Manned,Weeksport,Communication,5.6,100,AI Navigation,Medium,"China, UAE, Russia",222
 China,2002,Triple-buffered holistic complexity,Unmanned,Jasontown,Research,19.67,97,Reusable Rocket,High,"India, China, France",290
-Germany,2000,Triple-buffered bifurcated monitoring,Manned,Michellefort,Communication,9.0,69,Nuclear Propulsion,Medium,Germany,37
+Germany,2000,Triple-buffered bifurcated monitoring,Manned,Michellefort,Communication,9,69,Nuclear Propulsion,Medium,Germany,37
 Germany,2008,Right-sized zero administration infrastructure,Unmanned,West Thomashaven,Communication,16.58,51,Reusable Rocket,High,"UAE, USA, Russia",37
 USA,2010,Synchronized intangible forecast,Manned,Sandrabury,Research,36.05,60,Solar Propulsion,High,"India, UK",99
 China,2005,Balanced static open system,Manned,Lake Bryanchester,Research,27.24,97,Nuclear Propulsion,Low,"UK, UAE",123
@@ -1485,7 +1485,7 @@ Japan,2015,Open-architected multi-state solution,Unmanned,North Jon,Weather,30.3
 UK,2012,Business-focused value-added utilization,Unmanned,South Robertburgh,Navigation,26.5,66,Solar Propulsion,Medium,"UAE, France, USA",364
 UK,2001,Sharable intangible initiative,Manned,New Marytown,Spy,6.15,86,Reusable Rocket,Low,"Israel, China, Russia",24
 USA,2011,Centralized composite architecture,Manned,Johnnyberg,Communication,4.01,82,Nuclear Propulsion,High,Germany,239
-UK,2012,Total encompassing conglomeration,Unmanned,Sandraburgh,Research,42.0,74,Reusable Rocket,Medium,"India, Germany, Israel",112
+UK,2012,Total encompassing conglomeration,Unmanned,Sandraburgh,Research,42,74,Reusable Rocket,Medium,"India, Germany, Israel",112
 France,2009,Reduced real-time throughput,Unmanned,Herreraton,Weather,13.69,70,AI Navigation,Medium,"China, Germany",185
 USA,2021,Horizontal system-worthy approach,Manned,Allenland,Research,47.5,57,AI Navigation,High,Germany,138
 India,2008,Switchable scalable service-desk,Manned,Baileyland,Weather,29.24,95,Traditional Rocket,Medium,"France, Germany, China",303
@@ -1695,7 +1695,7 @@ USA,2014,Persistent hybrid product,Manned,West Joy,Research,20.04,87,Traditional
 Israel,2023,Compatible empowering framework,Manned,Laneview,Research,23.62,91,Nuclear Propulsion,High,"UAE, Israel",228
 Israel,2015,Pre-emptive methodical neural-net,Unmanned,Greentown,Research,42.13,71,Solar Propulsion,High,UK,212
 UK,2023,Realigned incremental customer loyalty,Manned,Port Thomasshire,Navigation,8.36,88,Reusable Rocket,Low,India,285
-UK,2018,Extended zero-defect process improvement,Manned,Pamelachester,Spy,7.0,70,Traditional Rocket,Low,"France, UK, UAE",229
+UK,2018,Extended zero-defect process improvement,Manned,Pamelachester,Spy,7,70,Traditional Rocket,Low,"France, UK, UAE",229
 Israel,2001,Optimized fault-tolerant throughput,Manned,North Luke,Spy,49.23,77,AI Navigation,Medium,UK,47
 France,2005,Persistent tangible Graphic Interface,Manned,Chenview,Spy,13.86,91,AI Navigation,Low,Russia,208
 Japan,2006,Switchable analyzing solution,Manned,Port James,Weather,9.73,100,Nuclear Propulsion,High,"UK, France",124
@@ -1740,7 +1740,7 @@ India,2025,Multi-lateral executive firmware,Manned,New Sarah,Research,21.26,97,N
 UAE,2024,Horizontal background benchmark,Unmanned,Hallhaven,Spy,13.97,55,AI Navigation,Low,UAE,283
 UAE,2009,Intuitive fault-tolerant array,Unmanned,East Tammy,Navigation,15.68,92,Traditional Rocket,Medium,"UK, Israel",325
 Russia,2004,Progressive web-enabled focus group,Unmanned,Jacquelineland,Spy,40.58,63,Solar Propulsion,High,"UAE, Russia",182
-UK,2005,Reduced intangible complexity,Unmanned,Angelaport,Research,18.0,57,Reusable Rocket,High,"UK, India",202
+UK,2005,Reduced intangible complexity,Unmanned,Angelaport,Research,18,57,Reusable Rocket,High,"UK, India",202
 UAE,2006,Re-contextualized multimedia info-mediaries,Manned,East Lauren,Weather,35.72,92,Traditional Rocket,Medium,"Germany, Israel",338
 Germany,2024,Optimized client-driven matrices,Unmanned,North Ambermouth,Communication,16.51,53,Traditional Rocket,Medium,"Germany, Japan",305
 UAE,2002,Stand-alone 24hour software,Manned,Warrenberg,Research,35.7,100,Traditional Rocket,High,"UAE, China",264
@@ -1807,7 +1807,7 @@ Russia,2002,Reactive context-sensitive interface,Manned,Lake Christopher,Navigat
 France,2001,Focused contextually-based architecture,Unmanned,Brooksberg,Research,47.71,79,Solar Propulsion,High,"India, UAE, Japan",141
 UK,2001,Assimilated non-volatile artificial intelligence,Unmanned,East Lee,Spy,48.28,85,Solar Propulsion,Medium,"UAE, France, USA",165
 USA,2012,Optimized multimedia hardware,Manned,North Robertaland,Weather,27.47,85,AI Navigation,Medium,"UAE, Japan",80
-USA,2012,Innovative heuristic product,Unmanned,Roblesfurt,Navigation,13.0,77,Solar Propulsion,Medium,"USA, Russia",152
+USA,2012,Innovative heuristic product,Unmanned,Roblesfurt,Navigation,13,77,Solar Propulsion,Medium,"USA, Russia",152
 USA,2006,Networked even-keeled solution,Unmanned,Port Meganshire,Weather,14.54,60,AI Navigation,Medium,UAE,92
 India,2002,Centralized multimedia ability,Unmanned,Lake Debbie,Research,43.37,56,Reusable Rocket,High,UK,255
 UK,2011,Horizontal web-enabled middleware,Unmanned,Frankborough,Spy,19.4,82,AI Navigation,Low,"Germany, Japan",294
@@ -1882,7 +1882,7 @@ Russia,2002,Multi-channeled maximized hierarchy,Manned,Andersonville,Research,22
 UAE,2002,Team-oriented directional flexibility,Unmanned,East Davidburgh,Research,40.26,62,Traditional Rocket,Medium,"UK, China, Japan",15
 UAE,2006,Proactive attitude-oriented info-mediaries,Manned,Victoriaview,Spy,1.52,77,Traditional Rocket,Low,"UAE, Russia, France",160
 UK,2022,Public-key incremental model,Manned,Port Amychester,Navigation,0.97,90,Reusable Rocket,High,Germany,164
-India,2023,Cross-platform directional knowledgebase,Manned,Port Scottstad,Research,25.0,81,Traditional Rocket,Medium,"Russia, Israel, UK",48
+India,2023,Cross-platform directional knowledgebase,Manned,Port Scottstad,Research,25,81,Traditional Rocket,Medium,"Russia, Israel, UK",48
 Israel,2013,Fundamental coherent leverage,Unmanned,Josephburgh,Weather,34.75,60,Traditional Rocket,Medium,"India, France",294
 India,2009,Visionary holistic groupware,Unmanned,East Justin,Research,11.71,52,AI Navigation,Low,UK,114
 France,2018,Cloned intermediate firmware,Manned,West Tiffanystad,Weather,28.94,56,Solar Propulsion,Medium,"India, Germany",220
@@ -1907,7 +1907,7 @@ France,2000,Multi-layered attitude-oriented productivity,Unmanned,Kaufmanberg,Co
 Japan,2013,Organized secondary synergy,Unmanned,New Jeremyland,Communication,41.11,75,Nuclear Propulsion,Low,China,64
 China,2003,Face-to-face object-oriented frame,Manned,Briantown,Navigation,28.2,92,Reusable Rocket,Medium,"Russia, UK",191
 USA,2005,Reactive composite Local Area Network,Manned,Lake Amanda,Navigation,4.64,79,AI Navigation,Low,Russia,25
-UK,2002,Synergized motivating utilization,Manned,Grahamshire,Navigation,36.0,87,Nuclear Propulsion,Medium,"UAE, India, France",282
+UK,2002,Synergized motivating utilization,Manned,Grahamshire,Navigation,36,87,Nuclear Propulsion,Medium,"UAE, India, France",282
 UAE,2019,Extended 24hour leverage,Unmanned,Deckerside,Spy,28.41,83,Reusable Rocket,Low,Russia,18
 Israel,2014,Re-contextualized disintermediate support,Unmanned,Port Kaylahaven,Navigation,37.92,67,AI Navigation,High,"Germany, India, Japan",187
 China,2012,Stand-alone high-level hierarchy,Manned,South Scottborough,Communication,42.16,50,AI Navigation,Low,"UAE, France",299
@@ -2142,11 +2142,11 @@ USA,2001,Total fresh-thinking orchestration,Manned,Garciaport,Spy,41.16,63,Nucle
 UK,2004,Profound disintermediate leverage,Manned,South Matthew,Research,4.29,81,AI Navigation,Medium,"Israel, China, UK",241
 France,2022,Business-focused logistical adapter,Unmanned,Davidtown,Weather,4.83,83,Reusable Rocket,Medium,"UK, USA",114
 Russia,2009,Multi-channeled maximized utilization,Unmanned,East Haleymouth,Research,23.08,52,AI Navigation,High,"Russia, UK",357
-Japan,2022,Extended asynchronous time-frame,Manned,South Karen,Weather,8.0,94,Reusable Rocket,Medium,"Russia, France, Japan",300
+Japan,2022,Extended asynchronous time-frame,Manned,South Karen,Weather,8,94,Reusable Rocket,Medium,"Russia, France, Japan",300
 India,2005,Future-proofed fault-tolerant orchestration,Manned,Carrieland,Research,11.67,78,Nuclear Propulsion,High,Japan,180
 China,2000,Object-based homogeneous policy,Manned,Lake Crystal,Communication,43.17,62,Reusable Rocket,High,"Germany, Japan",306
 Israel,2021,Total grid-enabled Graphical User Interface,Manned,South Kyleborough,Navigation,6.13,98,Traditional Rocket,High,"UAE, India, USA",162
-China,2025,Upgradable grid-enabled database,Manned,Jacobview,Research,27.0,77,Reusable Rocket,Low,"China, USA",307
+China,2025,Upgradable grid-enabled database,Manned,Jacobview,Research,27,77,Reusable Rocket,Low,"China, USA",307
 India,2006,Organic object-oriented interface,Manned,Lake Wendymouth,Communication,27.75,90,Reusable Rocket,Low,"China, Israel",69
 Russia,2016,Optimized systemic superstructure,Manned,North Theresamouth,Spy,36.09,83,Reusable Rocket,Medium,France,94
 Japan,2014,Profound asynchronous help-desk,Unmanned,Lake Adam,Research,16.77,61,Nuclear Propulsion,Medium,Japan,148
@@ -2222,7 +2222,7 @@ UAE,2017,Grass-roots explicit alliance,Unmanned,North Ariana,Spy,22.29,98,Nuclea
 Japan,2019,Function-based intermediate knowledgebase,Manned,South Emily,Communication,18.44,91,Reusable Rocket,High,UK,176
 China,2018,Optional methodical parallelism,Unmanned,East Christopherbury,Spy,24.11,65,Solar Propulsion,Medium,"France, Israel, Russia",153
 Israel,2005,Secured 24hour circuit,Unmanned,Aaronmouth,Spy,12.25,98,Solar Propulsion,Low,"China, UK, India",221
-USA,2021,Fully-configurable object-oriented data-warehouse,Unmanned,Port Beth,Spy,31.0,64,Traditional Rocket,High,"France, UAE",189
+USA,2021,Fully-configurable object-oriented data-warehouse,Unmanned,Port Beth,Spy,31,64,Traditional Rocket,High,"France, UAE",189
 UK,2010,Open-architected solution-oriented artificial intelligence,Unmanned,South Michaeltown,Research,13.79,72,Traditional Rocket,High,"Russia, India, China",46
 Germany,2003,Monitored executive extranet,Unmanned,Lake Jasonfort,Navigation,38.33,100,Traditional Rocket,Medium,"UK, UAE",148
 Russia,2021,Exclusive fresh-thinking model,Unmanned,Jasmineport,Research,39.27,64,Nuclear Propulsion,Medium,Germany,127
@@ -2254,7 +2254,7 @@ India,2011,Focused user-facing archive,Manned,Michaelfurt,Research,37.27,94,Sola
 India,2000,Focused next generation approach,Unmanned,Quinnberg,Communication,17.27,90,AI Navigation,Medium,"UAE, Japan, France",229
 Israel,2000,Inverse 24hour array,Unmanned,North Gabrielleton,Spy,27.59,86,Traditional Rocket,High,"China, UAE, UK",115
 USA,2013,Mandatory national hierarchy,Unmanned,South Jimmyville,Navigation,36.45,62,Traditional Rocket,Medium,"Russia, India",226
-UK,2011,Mandatory secondary extranet,Manned,Jasonshire,Communication,8.0,75,Solar Propulsion,High,"France, India, Germany",277
+UK,2011,Mandatory secondary extranet,Manned,Jasonshire,Communication,8,75,Solar Propulsion,High,"France, India, Germany",277
 China,2004,Diverse homogeneous emulation,Unmanned,Mcgrathport,Research,3.76,95,AI Navigation,Low,UK,328
 France,2014,Customizable empowering policy,Manned,South Taylorton,Spy,30.55,62,Solar Propulsion,Low,China,69
 USA,2016,Centralized regional database,Unmanned,South Peggy,Research,19.15,56,Traditional Rocket,Low,"Japan, UK",3
@@ -2355,7 +2355,7 @@ UAE,2014,Inverse even-keeled help-desk,Unmanned,Ortegaport,Weather,41.97,67,AI N
 France,2001,De-engineered radical instruction set,Unmanned,Richardsfort,Spy,9.24,100,AI Navigation,Medium,"USA, India, China",71
 Russia,2025,Ergonomic logistical secured line,Manned,Briannafurt,Weather,13.92,96,AI Navigation,Low,"India, USA, Israel",111
 France,2021,De-engineered incremental neural-net,Unmanned,Maryfurt,Communication,40.16,65,Solar Propulsion,High,USA,191
-Japan,2001,Open-architected coherent task-force,Unmanned,Melanieport,Spy,29.0,74,AI Navigation,Medium,"UAE, UK",177
+Japan,2001,Open-architected coherent task-force,Unmanned,Melanieport,Spy,29,74,AI Navigation,Medium,"UAE, UK",177
 UAE,2004,Grass-roots 24hour ability,Unmanned,South Samuel,Spy,44.31,57,Nuclear Propulsion,Low,"USA, China",164
 Germany,2008,Operative value-added solution,Manned,North Shelly,Weather,6.32,55,Solar Propulsion,High,UAE,344
 China,2010,Advanced 5thgeneration intranet,Unmanned,Schneiderchester,Spy,33.56,81,Solar Propulsion,Low,"UAE, India, Russia",241
@@ -2429,7 +2429,7 @@ UAE,2004,Profound holistic knowledgebase,Manned,North Jeffrey,Communication,10.4
 Israel,2020,Upgradable well-modulated extranet,Unmanned,Garciaton,Spy,28.21,87,Reusable Rocket,High,India,40
 UK,2016,Centralized multimedia process improvement,Manned,Sandraton,Navigation,34.64,68,Reusable Rocket,High,"Israel, China",360
 UK,2015,Right-sized 3rdgeneration support,Unmanned,Kimberlystad,Spy,34.12,50,Traditional Rocket,High,Japan,34
-France,2014,Assimilated local paradigm,Unmanned,New Travis,Spy,5.0,68,AI Navigation,Medium,"UK, USA, UAE",233
+France,2014,Assimilated local paradigm,Unmanned,New Travis,Spy,5,68,AI Navigation,Medium,"UK, USA, UAE",233
 India,2001,Configurable solution-oriented product,Unmanned,North Dylan,Communication,16.46,57,Reusable Rocket,Medium,"China, Israel",296
 UK,2015,Re-contextualized optimizing website,Manned,New Amanda,Spy,28.13,95,AI Navigation,Medium,Germany,209
 Israel,2008,Business-focused maximized artificial intelligence,Unmanned,West Johnborough,Navigation,21.3,83,Solar Propulsion,Low,"Russia, Israel",325
@@ -2599,7 +2599,7 @@ UK,2010,Reverse-engineered well-modulated process improvement,Manned,Charlesland
 UK,2021,Horizontal executive productivity,Unmanned,Moniqueberg,Navigation,49.53,73,AI Navigation,Low,"France, Russia, Japan",246
 UK,2001,Enterprise-wide multi-state artificial intelligence,Unmanned,West Margaretfort,Weather,45.02,54,Solar Propulsion,High,"China, USA",161
 India,2012,Proactive content-based matrix,Manned,Autumnfurt,Communication,22.16,81,AI Navigation,Low,India,351
-UAE,2011,Multi-layered multi-state intranet,Unmanned,Port Allenburgh,Navigation,27.0,60,Traditional Rocket,Medium,"China, UK",22
+UAE,2011,Multi-layered multi-state intranet,Unmanned,Port Allenburgh,Navigation,27,60,Traditional Rocket,Medium,"China, UK",22
 Germany,2011,Centralized real-time matrix,Manned,Hestermouth,Research,14.67,97,Nuclear Propulsion,Low,"UK, France",132
 Russia,2025,Re-contextualized coherent groupware,Manned,Port Erinburgh,Spy,15.7,80,Nuclear Propulsion,Low,"UAE, France",138
 China,2013,Face-to-face systematic implementation,Manned,Port Hollyburgh,Navigation,34.89,65,Reusable Rocket,High,"USA, UK",153
@@ -2778,7 +2778,7 @@ China,2021,Inverse bifurcated Graphical User Interface,Unmanned,North Terrance,C
 Japan,2019,Inverse mission-critical moderator,Manned,West Tiffany,Weather,30.41,96,Traditional Rocket,Low,Germany,50
 Israel,2002,Distributed directional challenge,Unmanned,Port Deborah,Weather,19.37,94,Reusable Rocket,High,Germany,341
 Israel,2013,Cloned object-oriented framework,Manned,Port Sarahfort,Research,49.61,84,Traditional Rocket,High,Russia,345
-China,2012,Enhanced bandwidth-monitored forecast,Manned,Davidstad,Research,43.0,55,Reusable Rocket,High,"Israel, France",111
+China,2012,Enhanced bandwidth-monitored forecast,Manned,Davidstad,Research,43,55,Reusable Rocket,High,"Israel, France",111
 China,2002,Adaptive bandwidth-monitored workforce,Unmanned,Coleshire,Research,0.56,75,AI Navigation,Low,"India, Japan",332
 Russia,2001,Cross-platform demand-driven support,Unmanned,Wallport,Communication,14.3,64,AI Navigation,High,"China, France",307
 China,2011,Monitored composite array,Manned,Wilsonland,Navigation,16.47,85,Solar Propulsion,Low,"Russia, India, Japan",13
@@ -2845,7 +2845,7 @@ India,2015,Grass-roots intermediate Graphic Interface,Unmanned,Jonesmouth,Naviga
 UK,2021,Programmable mobile infrastructure,Unmanned,Marcusberg,Weather,5.8,86,Nuclear Propulsion,Low,"France, Japan",67
 France,2017,Cross-platform full-range framework,Unmanned,North Richardchester,Navigation,8.09,63,AI Navigation,Medium,"Russia, Germany, India",288
 USA,2025,Organized bandwidth-monitored installation,Manned,Ericside,Navigation,1.53,50,Nuclear Propulsion,Medium,"UAE, China, Russia",122
-France,2004,Enhanced 6thgeneration installation,Manned,Joshuaburgh,Research,12.0,51,Reusable Rocket,High,"UK, Germany, Russia",176
+France,2004,Enhanced 6thgeneration installation,Manned,Joshuaburgh,Research,12,51,Reusable Rocket,High,"UK, Germany, Russia",176
 Germany,2018,Programmable motivating intranet,Manned,Lake Ronaldfurt,Navigation,47.61,65,AI Navigation,High,"Israel, France",30
 Japan,2006,Organized 24/7 methodology,Manned,Brownview,Weather,16.49,53,Reusable Rocket,Medium,"Japan, Russia",190
 Germany,2022,Upgradable upward-trending emulation,Unmanned,Curtisport,Communication,43.1,85,Traditional Rocket,Medium,"Russia, Germany",149
