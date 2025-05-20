@@ -3,18 +3,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-import AssistView from './AssistView';
 import ControlPanel from './ControlPanel';
-import Overview from './Overview';
-import DetailView from './DetailView';
+import Page1 from './pages/Page1';
+import Page2 from './pages/Page2';
+import Page3 from './pages/Page3';
+import Page4 from './pages/Page4';
+import Page5 from './pages/Page5';
 import '../css/App.css'
-
-// 页面组件
-const Page1 = () => <div className='page'><h1>页面 1</h1></div>;
-const Page2 = () => <div className='page'><h1>页面 2</h1></div>;
-const Page3 = () => <div className='page'><h1>页面 3</h1></div>;
-const Page4 = () => <div className='page'><h1>页面 4</h1></div>;
-const Page5 = () => <div className='page'><h1>页面 5</h1></div>;
 
 // App组件
 function App() {
@@ -26,11 +21,11 @@ function App() {
                 </div>
                 <div className='mainPanel'>
                     <div className='navigation'>
-                        <Link to="/page1">页面 1</Link>
-                        <Link to="/page2">页面 2</Link>
-                        <Link to="/page3">页面 3</Link>
-                        <Link to="/page4">页面 4</Link>
-                        <Link to="/page5">页面 5</Link>
+                        <Link to="/page1">概览</Link>
+                        <Link to="/page2">数据可视化</Link>
+                        <Link to="/page3">分析报告</Link>
+                        <Link to="/page4">设置</Link>
+                        <Link to="/page5">帮助</Link>
                     </div>
                     <div className='content'>
                         <Routes>
