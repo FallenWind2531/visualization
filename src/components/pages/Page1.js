@@ -9,9 +9,19 @@ function Page1() {
     const [error, setError] = useState(null); // 状态变量：错误信息，默认为 null
     const [loading, setLoading] = useState(true); // 状态变量：加载状态 (默认 true，开始加载所有数据)
     const [isPlaying, setIsPlaying] = useState(false); // 状态变量：是否正在播放动画
+    const [hiddenCountries, setHiddenCountries] = useState(new Set()); // 新增：记录被隐藏的国家
 
     const chartRef = useRef(null); // 用于引用图表容器的 div 元素
     const myChart = useRef(null); // 用于存储 ECharts 实例
+
+    // 辅助函数：生成 visualMap 的 selected 对象
+    const generateSelectedObjectFromHiddenCountries = (allCountries, hiddenCountries) => {
+        const selected = {};
+        allCountries.forEach(country => {
+            selected[country] = !hiddenCountries.has(country);
+        });
+        return selected;
+    };
 
     // 首次加载时，获取所有年份的数据
     useEffect(() => {
@@ -20,7 +30,7 @@ function Page1() {
             setError(null); // 清空错误信息
             const dataByYear = {};
             const startYear = 2000;
-            const endYear = 2023;
+            const endYear = 2024; // 更新到2024年
 
             try {
                 for (let y = startYear; y <= endYear; y++) {
@@ -80,7 +90,7 @@ function Page1() {
             intervalId = setInterval(() => {
                 setYear(prevYear => {
                     const nextYear = prevYear + 1;
-                    const maxYear = 2023; // 最大年份
+                    const maxYear = 2024; // 更新最大年份到2024
                     if (nextYear > maxYear) {
                         setIsPlaying(false); // 停止播放
                         return 2000; // 回到起始年份
@@ -212,7 +222,7 @@ function Page1() {
                  },
                  // 根据实际 GDP 数据范围调整 min/max，对数轴min > 0
                  min: 10000000000, // 调整对数轴最小值，例如 10 Billion $
-                 max: 30000000000000, // 调整对数轴最大值
+                 max: 35000000000000, // 调整对数轴最大值
             },
             yAxis: {
                 type: 'value',
@@ -231,87 +241,127 @@ function Page1() {
                  max: 50, // 假设最大预算 100 Billion $
             },
             visualMap: [{
-                    // 根据国家进行颜色映射，位置调整到左下角
-                    show: true, // 显示 visualMap
-                    dimension: 3, // 对应 formattedData 中的 Country 索引
-                    categories: allCountries, // 从所有数据中提取所有国家
-                    inRange: {
-                        color: (
-                             ['#51689b', '#ce5c5c', '#fbc357', '#8fbf8f', '#659d84', '#fb8e6a', '#c77288', '#786090', '#91c4c5', '#6890ba']
-                        )
-                    },
-                    left: 10,
-                    bottom: 10,
-                    orient: 'horizontal', // 水平排列
-                    // text: ['国家', ''], // 移除这里的文本，让 ECharts 自动显示 category 文本
-                    calculable: true,
-                    // 添加 itemWidth 和 itemHeight 以控制图例项的大小
-                    itemWidth: 15,
-                    itemHeight: 10
-                }
-            ],
+                show: true,
+                dimension: 3,
+                categories: allCountries,
+                inRange: {
+                    color: ['#51689b', '#ce5c5c', '#fbc357', '#8fbf8f', '#659d84', '#fb8e6a', '#c77288', '#786090', '#91c4c5', '#6890ba']
+                },
+                left: 10,
+                bottom: 10,
+                orient: 'horizontal',
+                calculable: true,
+                selected: generateSelectedObjectFromHiddenCountries(allCountries, hiddenCountries)
+            }],
             series: [
                 {
-                    name: `${currentYear}年`, // 系列名称显示年份
+                    name: `${currentYear}年`,
                     type: 'scatter',
-                    data: data, // 使用传入的数据
+                    data: data,
                     itemStyle: {
                         opacity: 0.8
                     },
                     symbolSize: function (val) {
-                        // 确保 val 数组有足够的元素
-                         if (!val || val.length < 3) return 5; // 数据格式不正确时返回默认大小
-                        return sizeFunction(val[2]); // 使用 formattedData 中的 Duration (索引 2)
+                        if (!val || val.length < 3) return 5;
+                        return sizeFunction(val[2]);
                     },
-                     label: { // 添加标签显示国家名称
-                         show: true,
-                         formatter: function (param) {
-                             return param.value[3]; // 显示国家名称 (索引 3)
-                         },
-                         position: 'top' // 标签位置
-                     },
-                     emphasis: { // 高亮样式
-                         focus: 'series'
-                     },
-                    // 在 series 中再次明确动画更新配置
-                    animationDurationUpdate: 1500, // 继承 option 顶层的设置
-                    animationEasingUpdate: 'cubicInOut' // 继承 option 顶层的设置
-                 }
-             ],
+                    label: {
+                        show: true,
+                        formatter: function (param) {
+                            return param.value[3];
+                        },
+                        position: 'top'
+                    },
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    animationDurationUpdate: 1500,
+                    animationEasingUpdate: 'cubicInOut'
+                }
+            ],
          };
     };
 
     // ECharts 初始化逻辑
     useEffect(() => {
-        // 如果存在错误或正在加载，不初始化图表
         if (error || loading) {
-             return;
+            return;
         }
-        // 如果所有数据没有加载完成，不初始化图表
         if (!allYearBubbleData || Object.keys(allYearBubbleData).length === 0) {
-             // 在加载或出错时，显示相应的提示信息
-              if (chartRef.current) {
-                  if (loading) chartRef.current.innerHTML = '<p>正在加载所有年份数据...</p>';
-                  else if (error) chartRef.current.innerHTML = `<p style="color: red;">Error: ${error}</p>`;
-                  else chartRef.current.innerHTML = '<p>无数据可用。</p>';
-              }
-             return;
+            if (chartRef.current) {
+                if (loading) chartRef.current.innerHTML = '<p>正在加载所有年份数据...</p>';
+                else if (error) chartRef.current.innerHTML = `<p style="color: red;">Error: ${error}</p>`;
+                else chartRef.current.innerHTML = '<p>无数据可用。</p>';
+            }
+            return;
         }
 
         if (!myChart.current) {
             myChart.current = echarts.init(chartRef.current);
 
-            // 初始化时设置图表的基本配置，使用第一年的数据或空数据
+            // 临时：监听所有 ECharts 事件，用于调试
+            myChart.current.on('*', function (type, params) {
+                console.log('ECharts event:', type, params);
+            });
+
+            // 移除之前的 visualmapselected 或 legendselectchanged 监听器
+            myChart.current.off('visualmapselected');
+            myChart.current.off('legendselectchanged');
+
+            // 新增：监听 'finished' 事件
+            myChart.current.on('finished', function () {
+                console.log('Chart "finished" event triggered.'); // <-- 关键日志1
+                if (myChart.current) { // 确保实例仍然存在
+                    const currentOption = myChart.current.getOption();
+                    if (currentOption && currentOption.visualMap && currentOption.visualMap[0] && typeof currentOption.visualMap[0].selected !== 'undefined') { // 检查 selected 是否存在
+                        const echartsSelectedMap = currentOption.visualMap[0].selected;
+                        console.log('Inside "finished": visualMap.selected from getOption:', echartsSelectedMap); // <-- 关键日志2
+
+                        const newHidden = new Set();
+                        for (const countryName in echartsSelectedMap) {
+                            if (Object.prototype.hasOwnProperty.call(echartsSelectedMap, countryName)) {
+                                if (!echartsSelectedMap[countryName]) { // 如果未选中
+                                    newHidden.add(countryName);
+                                }
+                            }
+                        }
+
+                        // 为避免不必要的更新和潜在的循环，只有当 newHidden 确实与当前 hiddenCountries 不同时才更新
+                        setHiddenCountries(prevHidden => {
+                            // 复制 prevHidden 到一个数组进行比较，避免直接修改 Set
+                            const prevHiddenArray = Array.from(prevHidden).sort();
+                            const newHiddenArray = Array.from(newHidden).sort();
+                            const isEqual = prevHiddenArray.length === newHiddenArray.length &&
+                                            prevHiddenArray.every((value, index) => value === newHiddenArray[index]);
+
+                            console.log('Inside "finished": prevHidden:', Array.from(prevHidden), 'newHidden:', Array.from(newHidden)); // <-- 关键日志3
+
+                            if (isEqual) {
+                                console.log('Inside "finished": hiddenCountries state is same, skipping update.');
+                                return prevHidden; // 状态相同，不更新
+                            } else {
+                                console.log('Inside "finished": Updating hiddenCountries.'); // <-- 关键日志4
+                                return newHidden; // 状态不同，更新
+                            }
+                        });
+                    } else {
+                        console.log('Chart "finished": visualMap or visualMap.selected not found in currentOption.'); // <-- 关键日志5
+                    }
+                }
+            });
+
             const initialYearData = allYearBubbleData[year] || [];
             const initialFormattedData = initialYearData.map(item => ({
-                 id: item[0],
-                 value: [
-                     item[1],
-                     item[2],
-                     item[3],
-                     item[0]
-                 ]
+                id: item[0],
+                value: [
+                    item[1],
+                    item[2],
+                    item[3],
+                    item[0]
+                ]
             }));
+            // 在 initialOption 中，visualMap.selected 仍然使用 generateSelectedObjectFromHiddenCountries
+            // (此时 hiddenCountries 应该是初始的空 Set)
             const initialOption = getChartOption(initialFormattedData, year);
             myChart.current.setOption(initialOption);
         }
@@ -319,7 +369,7 @@ function Page1() {
         // 响应窗口大小变化，调整图表大小
         const handleResize = () => {
             if (myChart.current) {
-                 myChart.current.resize();
+                myChart.current.resize();
             }
         };
         window.addEventListener('resize', handleResize);
@@ -332,79 +382,104 @@ function Page1() {
             }
             window.removeEventListener('resize', handleResize);
         };
-    }, [error, loading, allYearBubbleData]); // 依赖项：错误、加载状态和所有年份数据
+    }, [error, loading, allYearBubbleData]); // 这个 effect 仍然只在初始化时运行
 
-    // 当年份变化时，更新图表数据和年份大字
+    // 修改图表更新的 useEffect
     useEffect(() => {
-        // 等待所有数据加载完成且图表实例已创建
-        if (loading || error || !myChart.current) {
-             // 在加载或出错时，显示相应的提示信息
-              if (chartRef.current) {
-                  if (loading) chartRef.current.innerHTML = '<p>正在加载所有年份数据...</p>';
-                  else if (error) chartRef.current.innerHTML = `<p style="color: red;">Error: ${error}</p>`;
-                  else if (!allYearBubbleData || Object.keys(allYearBubbleData).length === 0) chartRef.current.innerHTML = '<p>无数据可用。</p>';
-              }
+        if (loading || error || !myChart.current || !allYearBubbleData || Object.keys(allYearBubbleData).length === 0) {
+            if (chartRef.current) {
+                if (loading) chartRef.current.innerHTML = '<p>正在加载所有年份数据...</p>';
+                else if (error) chartRef.current.innerHTML = `<p style="color: red;">Error: ${error}</p>`;
+                else chartRef.current.innerHTML = '<p>无数据可用。</p>';
+            }
             return;
         }
 
-        // 获取当前年份的数据
         const currentYearData = allYearBubbleData[year] || [];
-
-        // 适配数据格式：后端实际返回数据 ['Country', 'GDP', 'Budget', 'Duration']
-        // ECharts 散点图数据 [GDP, Budget, Duration, Country]
         const formattedData = currentYearData.map(item => ({
-            id: item[0], // Country as ID
-            value: [
-                item[1], // GDP
-                item[2], // Budget
-                item[3], // Duration
-                item[0]  // Country
-            ]
+            id: item[0],
+            value: [item[1], item[2], item[3], item[0]]
         }));
 
-        // 更新图表数据和年份大字
-        // 注意：这里不需要 getOption()，直接构造需要更新的部分
-        const updatedOption = {
-             title: [
-                 // 保留第一个标题（主要标题）
-                 myChart.current.getOption().title[0],
-                 { // 更新年份大字标题
-                     text: year.toString(), // 显示当前年份
-                     textAlign: 'center', // 文本居中对齐
-                     // 使用 left 和 top 属性定位到图表绘制区域的中心偏右下
-                     left: '75%', // 调整水平位置，根据需要调整
-                     top: '65%', // 调整垂直位置，根据需要调整
-                     textStyle: {
-                         fontSize: 100,
-                         color: '#888',
-                         fontWeight: 900,
-                         fontFamily: 'Source Sans Pro, Arial, sans-serif',
-                         letterSpacing: -3,
-                         textShadow: `
-                            0 2px 4px #fff,
-                            0 4px 8px #eee,
-                            0 8px 16px #bbb,
-                            0 12px 24px #888,
-                            0 16px 32px #444,
-                            0 24px 48px rgba(0,0,0,0.45)
-                         `
-                     }
-                 }
-             ],
-            series: [
-                {
-                    // 仅更新 data 属性
-                    data: formattedData,
-                    name: `${year}年`, // 更新系列名称
-                }
-            ]
+        // 确保 allCountriesList 是基于当前可用数据的最新列表
+        const allCountriesList = Array.from(new Set(Object.values(allYearBubbleData).flat().map(item => item[0])));
+
+        // 获取现有的配置，以避免覆盖其他重要属性
+        const currentOption = myChart.current.getOption();
+        const baseTitleConfig = currentOption.title && currentOption.title[0] ? currentOption.title[0] : {};
+        // 确保能正确获取年份标题的配置，如果它在 title 数组的第二个位置
+        const baseYearTitleConfig = currentOption.title && currentOption.title.length > 1 && currentOption.title[1] ? currentOption.title[1] : {
+             // 如果无法获取，提供一个默认结构，避免 textStyle 等属性丢失
+             textAlign: 'center', left: '75%', top: '65%', textStyle: { fontSize: 100, color: '#888', fontWeight: 900, fontFamily: 'Source Sans Pro, Arial, sans-serif', letterSpacing: -3, textShadow: '0 2px 4px #fff, 0 4px 8px #eee, 0 8px 16px #bbb, 0 12px 24px #888, 0 16px 32px #444, 0 24px 48px rgba(0,0,0,0.45)'}
+         };
+        const baseSeriesConfig = currentOption.series && currentOption.series[0] ? currentOption.series[0] : {};
+        const baseVisualMapConfig = currentOption.visualMap && currentOption.visualMap[0] ? currentOption.visualMap[0] : {};
+
+        // ***** 1. 定义新的 label.formatter，它能够访问当前作用域的 hiddenCountries *****
+        const newLabelFormatter = function (param) {
+            const countryName = param.value[3]; // 国家名称在 value[3]
+            if (hiddenCountries.has(countryName)) {
+                return ''; // 如果国家在隐藏集合中，返回空字符串，不显示标签
+            }
+            return countryName; // 否则显示国家名称
         };
 
-        // 使用 setOption 更新图表，ECharts 会根据数据项的 ID 尝试进行动画过渡
-        // 使用 { notMerge: false } 确保合并更新
+        // ***** 2. 同样为 tooltip.formatter 应用类似逻辑 (如果需要隐藏tooltip) *****
+        const newTooltipFormatter = function (obj) {
+            const countryNameInTooltip = obj.value[3];
+            if (hiddenCountries.has(countryNameInTooltip)) {
+                return null; // 或者返回空字符串，使tooltip不显示或显示为空
+            }
+            // 原有的 tooltip 内容
+            var value = obj.value;
+            return '国家：' + value[3] + '<br>'
+                 + '年份：' + year + '<br>' // 使用当前 useEffect 作用域的 year
+                 + '经济水平 (GDP)：' + value[0] + '<br>'
+                 + '航天任务投入成本：' + value[1] + ' Billion $' + '<br>'
+                 + '航天任务总时间：' + value[2] + ' 天';
+        };
+
+        console.log(`Updating chart for year ${year}, hidden:`, Array.from(hiddenCountries)); // 调试日志：查看当前隐藏状态
+
+        const updatedOption = {
+            title: [
+                baseTitleConfig,
+                {
+                    ...baseYearTitleConfig,
+                    text: year.toString(),
+                }
+            ],
+            series: [{
+                ...baseSeriesConfig,
+                name: `${year}年`,
+                data: formattedData, // 传递当前年份的完整数据
+                label: { // ***** 3. 明确设置 label 配置，并使用新的 formatter *****
+                    ...(baseSeriesConfig.label || {}), // 保留 show: true, position: 'top' 等其他label设置
+                    formatter: newLabelFormatter,
+                },
+            }],
+            tooltip: { // ***** 4. 明确设置 tooltip 配置，并使用新的 formatter *****
+                ...(currentOption.tooltip || {}), // 保留 padding, borderWidth 等其他tooltip设置
+                formatter: newTooltipFormatter,
+            },
+            visualMap: [{
+                ...baseVisualMapConfig,
+                categories: allCountriesList,
+                selected: generateSelectedObjectFromHiddenCountries(
+                    allCountriesList,
+                    hiddenCountries
+                )
+            }]
+        };
+
+        console.log('Setting visualMap.selected to:', updatedOption.visualMap[0].selected); // 调试日志：查看 visualMap 选中状态
+        if (updatedOption.series[0].label.formatter) {
+          //  console.log('Label formatter function body contains hiddenCountries check:', updatedOption.series[0].label.formatter.toString().includes("hiddenCountries.has"));
+        }
+
         myChart.current.setOption(updatedOption, { notMerge: false });
 
-    }, [year, allYearBubbleData, myChart.current, loading, error]); // 依赖项：年份、所有数据、图表实例、加载和错误状态
+    }, [year, allYearBubbleData, hiddenCountries, myChart.current, loading, error]);
 
     return (
         <div
@@ -474,7 +549,7 @@ function Page1() {
               }}
             >
               <p style={{ margin: '0 0 8px 0', fontWeight: 700, fontSize: 16, color: '#222' }}>年份</p>
-              {[...Array(24).keys()].map(i => 2000 + i).map(y => (
+              {[...Array(25).keys()].map(i => 2000 + i).map(y => (
                 <div
                   key={y}
                   style={{
