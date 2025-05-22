@@ -1,3 +1,4 @@
+
 // 本文件是界面UI的根目录
 
 import React from 'react';
@@ -21,7 +22,7 @@ function App() {
                 </div>
                 <div className='mainPanel'>
                     <div className='navigation'>
-                        <Link to="/page1">概览</Link>
+                        <Link to="/page1">气泡图</Link>
                         <Link to="/page2">数据可视化</Link>
                         <Link to="/page3">分析报告</Link>
                         <Link to="/page4">和弦图</Link>
