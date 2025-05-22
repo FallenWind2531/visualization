@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 
-space_file_path = 'C:/Users/18761/Desktop/visualization/visualization/python/material/Global_Space_Exploration_Dataset.csv'
+space_file_path = './python/material/Global_Space_Exploration_Dataset.csv'
 try:
     space_df = pd.read_csv(space_file_path)
     print("--- Loaded data successfully ---")
@@ -16,7 +16,7 @@ except Exception as e:
     print(f"Error: {e}")
     exit()
 
-GDP_file_path = 'C:/Users/18761/Desktop/visualization/visualization/python/material/Global_GDP_Dataset.csv'
+GDP_file_path = './python/material/Global_GDP_Dataset.csv'
 try:
     GDP_df = pd.read_csv(GDP_file_path)
     print("--- Loaded data successfully ---")
