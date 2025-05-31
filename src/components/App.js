@@ -17,14 +17,14 @@ function App() {
     return (
         <Router>
             <div className='root'>
-                <div className='controlPanel'>
+                {/* <div className='controlPanel'>
                     <ControlPanel/>
-                </div>
+                </div> */}
                 <div className='mainPanel'>
                     <div className='navigation'>
                         <Link to="/page1">气泡图</Link>
-                        <Link to="/page2">数据可视化</Link>
-                        <Link to="/page3">分析报告</Link>
+                        <Link to="/page2">饼图</Link>
+                        <Link to="/page3">雷达图</Link>
                         <Link to="/page4">和弦图</Link>
                         <Link to="/page5">时间序列堆叠面积图</Link>
                     </div>
