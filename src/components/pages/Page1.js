@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
+import NavBar from '../NavBar'; // 导入 NavBar 组件
 
 function Page1() {
     const [year, setYear] = useState(2000); // 状态变量：当前选中的年份，默认 2000 (改为起始年份)
@@ -65,21 +66,32 @@ function Page1() {
             // 适配数据格式：后端实际返回数据 ['Country', 'GDP', 'Budget', 'Duration']
             // ECharts 散点图数据 [GDP, Budget, Duration, Country]
             const currentYearData = allYearBubbleData[year] || [];
-            const formattedData = currentYearData.map(item => ({
-                id: item[0], // Country as ID
-                value: [
-                    item[1], // GDP
-                    item[2], // Budget
-                    item[3], // Duration
-                    item[0]  // Country
-                ]
-            }));
+            const formattedData = currentYearData.map(item => {
+                const countryName = item[0];
+                const isHidden = hiddenCountries.has(countryName);
+
+                return {
+                    id: countryName, // Country as ID
+                    value: [
+                        item[1], // GDP
+                        item[2], // Budget
+                        item[3], // Duration
+                        countryName  // Country
+                    ],
+                    // Dynamically set itemStyle based on hiddenCountries
+                    itemStyle: {
+                        opacity: isHidden ? 0 : 0.9, // Set opacity to 0 if hidden
+                        borderColor: isHidden ? 'transparent' : '#fff', // Set border to transparent if hidden
+                        borderWidth: isHidden ? 0 : 1 // Set border width to 0 if hidden
+                    }
+                };
+            });
             setBubbleData(formattedData);
         } else {
              // 如果当前年份没有数据，清空 bubbleData
              setBubbleData([]);
         }
-    }, [year, allYearBubbleData]); // 依赖项：year 和 allYearBubbleData
+    }, [year, allYearBubbleData, hiddenCountries]); // 依赖项：year 和 allYearBubbleData
 
     // 播放控制逻辑
     useEffect(() => {
@@ -160,11 +172,11 @@ function Page1() {
                  {
                      text: currentYear.toString(),
                      textAlign: 'center',
-                     left: '70%',
-                     top: '60%',
+                     left: '80%',
+                     top: '65%',
                      textStyle: {
                          fontSize: 100,
-                         color: '#888',
+                         color: 'rgba(0, 0, 0, 0.8)',
                          fontWeight: 900,
                          fontFamily: 'Source Sans Pro, Arial, sans-serif',
                          letterSpacing: -3,
@@ -200,7 +212,7 @@ function Page1() {
             },
             xAxis: {
                 type: 'log', // GDP 使用对数轴，适配大范围数据
-                name: '经济水平 (GDP)',
+                name: '经济水平 (GDP-PPP 购买力平价)',
                 nameGap: 25,
                 nameLocation: 'middle',
                 nameTextStyle: {
@@ -221,7 +233,7 @@ function Page1() {
                       }
                  },
                  // 根据实际 GDP 数据范围调整 min/max，对数轴min > 0
-                 min: 10000000000, // 调整对数轴最小值，例如 10 Billion $
+                 min: 100000000000, // 调整对数轴最小值，例如 10 Billion $
                  max: 35000000000000, // 调整对数轴最大值
             },
             yAxis: {
@@ -258,9 +270,6 @@ function Page1() {
                     name: `${currentYear}年`,
                     type: 'scatter',
                     data: data,
-                    itemStyle: {
-                        opacity: 0.8
-                    },
                     symbolSize: function (val) {
                         if (!val || val.length < 3) return 5;
                         return sizeFunction(val[2]);
@@ -396,10 +405,26 @@ function Page1() {
         }
 
         const currentYearData = allYearBubbleData[year] || [];
-        const formattedData = currentYearData.map(item => ({
-            id: item[0],
-            value: [item[1], item[2], item[3], item[0]]
-        }));
+        const formattedData = currentYearData.map(item => {
+            const countryName = item[0];
+            const isHidden = hiddenCountries.has(countryName);
+
+            return {
+                id: countryName, // Country as ID
+                value: [
+                    item[1], // GDP
+                    item[2], // Budget
+                    item[3], // Duration
+                    countryName  // Country
+                ],
+                // Dynamically set itemStyle based on hiddenCountries
+                itemStyle: {
+                    opacity: isHidden ? 0 : 0.9, // Set opacity to 0 if hidden
+                    borderColor: isHidden ? 'transparent' : '#fff', // Set border to transparent if hidden
+                    borderWidth: isHidden ? 0 : 1 // Set border width to 0 if hidden
+                }
+            };
+        });
 
         // 确保 allCountriesList 是基于当前可用数据的最新列表
         const allCountriesList = Array.from(new Set(Object.values(allYearBubbleData).flat().map(item => item[0])));
@@ -482,119 +507,384 @@ function Page1() {
     }, [year, allYearBubbleData, hiddenCountries, myChart.current, loading, error]);
 
     return (
-        <div
-          className="page"
-          style={{
-            minHeight: '100vh',
-            background: 'linear-gradient(135deg, #e0e7ef 0%, #f7f9fb 100%)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '40px 0',
-          }}
-        >
-          {/* 卡片式磨砂玻璃容器 */}
-          <div
-            style={{
-              width: '90vw',
-              maxWidth: 1200,
-              minHeight: 650,
-              background: 'rgba(255,255,255,0.55)',
-              borderRadius: 32,
-              boxShadow: '0 16px 48px 0 rgba(31, 38, 135, 0.22)', // 阴影更强
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255,255,255,0.25)',
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              padding: '40px 32px',
-              marginBottom: 0,
-            }}
-          >
-            {/* ECharts 图表容器 */}
-            <div
-              ref={chartRef}
-              style={{
-                width: '70%',
-                height: 520,
-                minWidth: 500,
-                borderRadius: 24,
-                background: 'rgba(255,255,255,0.7)',
-                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)',
-                marginRight: 64, // 间距更大
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            />
-            {/* 年份选择条 */}
+        <div className="page">
+            <NavBar /> {/* 添加导航栏组件 */}
+            {/* 卡片式磨砂玻璃容器 */}
             <div
               style={{
+                width: '95vw',
+                maxWidth: 1200, // Increased maxWidth slightly
+                minHeight: 500,
+                maxHeight:650,
+                background: 'rgba(255,255,255,0.55)',
+                borderRadius: 48,
+                boxShadow: '0 16px 48px 0 rgba(31, 38, 135, 0.22)', // 阴影更强
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.25)',
                 display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-                maxHeight: 520,
-                overflowY: 'auto',
-                background: 'rgba(255,255,255,0.35)',
-                borderRadius: 18,
-                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)', // 阴影更强
-                padding: '16px 12px',
-                marginLeft: 0,
-                marginRight: 8,
-                fontFamily: 'SF Pro Display, Helvetica Neue, Arial, sans-serif',
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                padding: '20px 32px', // Adjusted top padding, reduced overall
+                marginLeft: 85,
+                marginTop: 100, // Added margin-top to push the container down from the top of the page
               }}
             >
-              <p style={{ margin: '0 0 8px 0', fontWeight: 700, fontSize: 16, color: '#222' }}>年份</p>
-              {[...Array(25).keys()].map(i => 2000 + i).map(y => (
-                <div
-                  key={y}
-                  style={{
-                    cursor: 'pointer',
-                    padding: '4px 0',
-                    fontWeight: y === year ? 700 : 400,
-                    color: y === year ? '#007aff' : '#222',
-                    fontSize: 15,
-                    textAlign: 'right',
-                    borderRadius: 6,
-                    background: y === year ? 'rgba(0,122,255,0.08)' : 'none',
-                    transition: 'all 0.2s',
-                    marginBottom: 1,
-                  }}
-                  onClick={() => setYear(y)}
-                >
-                  {y}
-                </div>
-              ))}
+              {loading ? (
+                  <div
+                      style={{
+                          width: '90%',
+                          height: 600,
+                          minWidth: 500,
+                          borderRadius: 24,
+                          background: 'rgba(255,255,255,0.7)',
+                          boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
+                          backdropFilter: 'blur(8px)',
+                          WebkitBackdropFilter: 'blur(16px)',
+                          marginRight: 32,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                      }}
+                  >
+                      <div id="wifi-loader">
+                          <svg class="circle-outer" viewBox="0 0 86 86">
+                              <circle class="back" cx="43" cy="43" r="40"></circle>
+                              <circle class="front" cx="43" cy="43" r="40"></circle>
+                              <circle class="new" cx="43" cy="43" r="40"></circle>
+                          </svg>
+                          <svg class="circle-middle" viewBox="0 0 60 60">
+                              <circle class="back" cx="30" cy="30" r="27"></circle>
+                              <circle class="front" cx="30" cy="30" r="27"></circle>
+                          </svg>
+                          <svg class="circle-inner" viewBox="0 0 34 34">
+                              <circle class="back" cx="17" cy="17" r="14"></circle>
+                              <circle class="front" cx="17" cy="17" r="14"></circle>
+                          </svg>
+                          <div class="text" data-text="Loading..."></div>
+                      </div>
+                  </div>
+              ) : error ? (
+                  <p style={{ color: 'red', fontSize: 20, fontWeight: 500 }}>Error: {error}</p>
+              ) : (
+                  <React.Fragment>
+                      {/* ECharts 图表容器 */}
+                      <div
+                          ref={chartRef}
+                          style={{
+                              width: '90%', // Adjusted width to make space for the year slider
+                              height: 620,
+                              minWidth: 500,
+                              borderRadius: 24,
+                              background: 'rgba(255,255,255,0.7)',
+                              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
+                              backdropFilter: 'blur(8px)',
+                              WebkitBackdropFilter: 'blur(16px)',
+                              marginRight: 32, // Adjusted spacing
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                          }}
+                      />
+                      {/* 年份选择条 */}
+                      <div
+                          style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'flex-end',
+                              height: 600, // Occupy full height of parent
+                              overflowY: 'auto',
+                              background: 'rgba(255,255,255,0.35)',
+                              borderRadius: 18,
+                              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
+                              padding: '16px 12px',
+                              marginLeft: 20, // Adjusted margin-left for spacing
+                              marginRight: 8,
+                              fontFamily: 'SF Pro Display, Helvetica Neue, Arial, sans-serif',
+                          }}
+                      >
+                          <p style={{ margin: '0 0 8px 0', fontWeight: 700, fontSize: 16, color: '#222' }}>年份</p>
+                          {[...Array(25).keys()].map(i => 2000 + i).map(y => (
+                              <div
+                                  key={y}
+                                  style={{
+                                      cursor: 'pointer',
+                                      padding: '4px 0',
+                                      fontWeight: y === year ? 700 : 400,
+                                      color: y === year ? '#007aff' : '#222',
+                                      fontSize: 15,
+                                      textAlign: 'right',
+                                      borderRadius: 6,
+                                      background: y === year ? 'rgba(0,122,255,0.08)' : 'none',
+                                      transition: 'all 0.2s',
+                                      marginBottom: 1,
+                                  }}
+                                  onClick={() => setYear(y)}
+                              >
+                                  {y}
+                              </div>
+                          ))}
+                      </div>
+                  </React.Fragment>
+              )}
             </div>
-          </div>
-          {/* 播放按钮，放在卡片正下方，居中 */}
-          <div style={{ marginTop: 32, display: 'flex', justifyContent: 'center', width: '100%' }}>
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              style={{
-                fontSize: 20,
-                fontWeight: 700,
-                color: isPlaying ? '#fff' : '#007aff',
-                background: isPlaying
-                  ? 'linear-gradient(90deg, #007aff 0%, #00c6fb 100%)'
-                  : 'rgba(255,255,255,0.7)',
-                border: 'none',
-                borderRadius: 16,
-                boxShadow: '0 4px 16px #b3d1fa',
-                padding: '12px 48px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                outline: 'none',
-                letterSpacing: 2,
-              }}
-            >
-              {isPlaying ? '暂停' : '播放'}
-            </button>
-          </div>
+            {/* 播放按钮，放在卡片正下方，居中 */}
+            <div style={{ marginTop: 30, display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: isPlaying ? '#fff' : '#007aff',
+                  background: isPlaying
+                    ? 'linear-gradient(90deg, #007aff 0%, #00c6fb 100%)'
+                    : 'rgba(255,255,255,0.7)',
+                  border: 'none',
+                  borderRadius: 16,
+                  boxShadow: '0 4px 16px #b3d1fa',
+                  padding: '12px 48px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  outline: 'none',
+                  letterSpacing: 2,
+                }}
+              >
+                {isPlaying ? '暂停' : '播放'}
+              </button>
+            </div>
+            <style>{`
+              @import url(https://fonts.googleapis.com/css?family=Roboto);
+              * { margin: 0; padding: 0; }
+              *, *:after, *:before { box-sizing: border-box; }
+              html { line-height: 1.2; }
+              body { background-color: #f5f5f5; color: #333; font-family: "Roboto", arial, sans-serif; font-size: 16px; }
+              /* Original dropdown styles */
+              .selected-item { margin: 20px 0; text-align: center; }
+              .selected-item p { font-size: 18px; }
+              .selected-item p span { font-weight: bold; }
+              .dropdown { margin: 20px auto; width: 300px; position: relative; perspective: 800px; z-index:100}
+              .dropdown.active .selLabel:after { content: '\u25B2'; }
+              .dropdown.active .dropdown-list li:nth-child(1) { transform: translateY(100%); }
+              .dropdown.active .dropdown-list li:nth-child(2) { transform: translateY(200%); }
+              .dropdown.active .dropdown-list li:nth-child(3) { transform: translateY(300%); }
+              .dropdown.active .dropdown-list li:nth-child(4) { transform: translateY(400%); }
+              .dropdown.active .dropdown-list li:nth-child(5) { transform: translateY(500%); } /* 新增 */
+              .dropdown.active .dropdown-list li:nth-child(6) { transform: translateY(600%); } /* 新增 */
+              .dropdown.active .dropdown-list li:nth-child(7) { transform: translateY(700%); } /* 新增 */
+              .dropdown.active .dropdown-list li:nth-child(8) { transform: translateY(800%); } /* 新增 */
+              .dropdown > .selLabel { box-shadow: 0 1px 1px rgba(0,0,0,0.1); width: 100%; height: 60px; line-height: 60px; color: #fff; font-size: 18px; letter-spacing: 2px; background: #34495e; display: block; padding: 0 50px 0 30px; position: relative; z-index: 9999; cursor: pointer; transform-style: preserve-3d; transform-origin: 50% 0%; transition: transform 300ms; -webkit-backface-visibility: hidden; -webkit-touch-callout: none; user-select: none; }
+              .dropdown > .selLabel:after { content: '\u25BC'; position: absolute; right: 0px; top: 15%; width: 50px; text-align: center; font-size: 12px; padding: 10px; height: 70%; line-height: 24px; border-left: 1px solid #ddd; }
+              .dropdown > .selLabel:active { transform: rotateX(45deg); }
+              .dropdown-list { position: absolute; top: 0px; width: 100%; }
+              .dropdown-list li { display: block; list-style: none; left: 0; opacity: 1; transition: transform 300ms ease; position: absolute; top: 0; width: 100%; }
+              .dropdown-list li:nth-child(1) { background-color: #1abc9c; z-index: 8; transform: translateY(0%); }
+              .dropdown-list li:nth-child(2) { background-color: #3498db; z-index: 7; transform: translateY(3%); }
+              .dropdown-list li:nth-child(3) { background-color: #9b59b6; z-index: 6; transform: translateY(6%); }
+              .dropdown-list li:nth-child(4) { background-color: #e67e22; z-index: 5; transform: translateY(9%); }
+              .dropdown-list li:nth-child(5) { background-color: #e74c3c; z-index: 4; transform: translateY(12%); } /* 新增 */
+              .dropdown-list li:nth-child(6) { background-color: #2ecc71; z-index: 3; transform: translateY(15%); } /* 新增 */
+              .dropdown-list li:nth-child(7) { background-color: #f39c12; z-index: 2; transform: translateY(18%); } /* 新增 */
+              .dropdown-list li:nth-child(8) { background-color: #7f8c8d; z-index: 1; transform: translateY(21%); } /* 新增, 使用一个不同的颜色 */
+              .dropdown-list li span { box-shadow: 0 1px 1px rgba(0,0,0,0.2); -webkit-backface-visibility: hidden; -webkit-touch-callout: none; user-select: none; width: 100%; font-size: 18px; line-height: 60px; padding: 0 30px; display: block; color: #fff; cursor: pointer; letter-spacing: 2px; }
+
+              /* New Wifi Loader CSS */
+              #wifi-loader {
+                  --background: #62abff;
+                  --front-color: #4f29f0;
+                  --back-color: #c3c8de;
+                  --text-color: #414856;
+                  width: 64px;
+                  height: 64px;
+                  border-radius: 50px;
+                  position: relative;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+
+              #wifi-loader svg {
+                  position: absolute;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+
+              #wifi-loader svg circle {
+                  position: absolute;
+                  fill: none;
+                  stroke-width: 6px;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  transform: rotate(-100deg);
+                  transform-origin: center;
+              }
+
+              #wifi-loader svg circle.back {
+                  stroke: var(--back-color);
+              }
+
+              #wifi-loader svg circle.front {
+                  stroke: var(--front-color);
+              }
+
+              #wifi-loader svg.circle-outer {
+                  height: 86px;
+                  width: 86px;
+              }
+
+              #wifi-loader svg.circle-outer circle {
+                  stroke-dasharray: 62.75 188.25;
+              }
+
+              #wifi-loader svg.circle-outer circle.back {
+                  animation: circle-outer135 1.8s ease infinite 0.3s;
+              }
+
+              #wifi-loader svg.circle-outer circle.front {
+                  animation: circle-outer135 1.8s ease infinite 0.15s;
+              }
+
+              #wifi-loader svg.circle-middle {
+                  height: 60px;
+                  width: 60px;
+              }
+
+              #wifi-loader svg.circle-middle circle {
+                  stroke-dasharray: 42.5 127.5;
+              }
+
+              #wifi-loader svg.circle-middle circle.back {
+                  animation: circle-middle6123 1.8s ease infinite 0.25s;
+              }
+
+              #wifi-loader svg.circle-middle circle.front {
+                  animation: circle-middle6123 1.8s ease infinite 0.1s;
+              }
+
+              #wifi-loader svg.circle-inner {
+                  height: 34px;
+                  width: 34px;
+              }
+
+              #wifi-loader svg.circle-inner circle {
+                  stroke-dasharray: 22 66;
+              }
+
+              #wifi-loader svg.circle-inner circle.back {
+                  animation: circle-inner162 1.8s ease infinite 0.2s;
+              }
+
+              #wifi-loader svg.circle-inner circle.front {
+                  animation: circle-inner162 1.8s ease infinite 0.05s;
+              }
+
+              #wifi-loader .text {
+                  position: absolute;
+                  bottom: -40px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-transform: lowercase;
+                  font-weight: 500;
+                  font-size: 14px;
+                  letter-spacing: 0.2px;
+              }
+
+              #wifi-loader .text::before, #wifi-loader .text::after {
+                  content: attr(data-text);
+              }
+
+              #wifi-loader .text::before {
+                  color: var(--text-color);
+              }
+
+              #wifi-loader .text::after {
+                  color: var(--front-color);
+                  animation: text-animation76 3.6s ease infinite;
+                  position: absolute;
+                  left: 0;
+              }
+
+              @keyframes circle-outer135 {
+                  0% {
+                      stroke-dashoffset: 25;
+                  }
+
+                  25% {
+                      stroke-dashoffset: 0;
+                  }
+
+                  65% {
+                      stroke-dashoffset: 301;
+                  }
+
+                  80% {
+                      stroke-dashoffset: 276;
+                  }
+
+                  100% {
+                      stroke-dashoffset: 276;
+                  }
+              }
+
+              @keyframes circle-middle6123 {
+                  0% {
+                      stroke-dashoffset: 17;
+                  }
+
+                  25% {
+                      stroke-dashoffset: 0;
+                  }
+
+                  65% {
+                      stroke-dashoffset: 204;
+                  }
+
+                  80% {
+                      stroke-dashoffset: 187;
+                  }
+
+                  100% {
+                      stroke-dashoffset: 187;
+                  }
+              }
+
+              @keyframes circle-inner162 {
+                  0% {
+                      stroke-dashoffset: 9;
+                  }
+
+                  25% {
+                      stroke-dashoffset: 0;
+                  }
+
+                  65% {
+                      stroke-dashoffset: 106;
+                  }
+
+                  80% {
+                      stroke-dashoffset: 97;
+                  }
+
+                  100% {
+                      stroke-dashoffset: 97;
+                  }
+              }
+
+              @keyframes text-animation76 {
+                  0% {
+                      clip-path: inset(0 100% 0 0);
+                  }
+
+                  50% {
+                      clip-path: inset(0);
+                  }
+
+                  100% {
+                      clip-path: inset(0 0 0 100%);
+                  }
+              }
+            `}</style>
         </div>
     );
 }

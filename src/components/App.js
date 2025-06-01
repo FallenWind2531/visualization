@@ -1,3 +1,11 @@
+/*
+ * @Author: userName userEmail
+ * @Date: 2025-05-20 19:37:27
+ * @LastEditors: userName userEmail
+ * @LastEditTime: 2025-06-01 21:44:27
+ * @FilePath: \visualization\visualization\src\components\App.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 
 // 本文件是界面UI的根目录
 
