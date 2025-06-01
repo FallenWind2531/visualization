@@ -5,7 +5,7 @@ import pandas as pd
 app = Flask(__name__)
 CORS(app)
 
-space_file_path = './visualization/python/material/Global_Space_Exploration_Dataset.csv'
+space_file_path = './python/material/Global_Space_Exploration_Dataset.csv'
 try:
     space_df = pd.read_csv(space_file_path)
     print("--- Loaded data successfully ---")
@@ -16,7 +16,7 @@ except Exception as e:
     print(f"Error: {e}")
     exit()
 
-GDP_file_path = './visualization/python/material/Global_GDP_Dataset.csv'
+GDP_file_path = './python/material/Global_GDP_Dataset.csv'
 try:
     GDP_df = pd.read_csv(GDP_file_path)
     print("--- Loaded data successfully ---")
@@ -45,9 +45,13 @@ def bubble():
     GDP_long = GDP_df.melt(id_vars=['Country'], var_name='Year', value_name='GDP')
     GDP_long['Year'] = GDP_long['Year'].astype(int)
     df = pd.merge(space_df, GDP_long, on=['Country', 'Year'], how='left')
-    year_country_means_df = df.groupby(['Year', 'Country'])[['GDP', 'Budget (in Billion $)', 'Duration (in Days)']].mean().reset_index()
+    year_country_means_df = df.groupby(['Year', 'Country']).agg(
+        GDP=('GDP', 'mean'),
+        Budget=('Budget (in Billion $)', 'sum'),
+        Duration=('Duration (in Days)', 'sum')
+    ).reset_index()
     if country == None:
-        result_df = year_country_means_df[year_country_means_df['Year'] == year][['Country', 'GDP', 'Budget (in Billion $)', 'Duration (in Days)']]
+        result_df = year_country_means_df[year_country_means_df['Year'] == year][['Country', 'GDP', 'Budget', 'Duration']]
         result_list = result_df.values.tolist()
         response = jsonify({
             "code": 200,
@@ -112,6 +116,7 @@ def radar():
 def chord():
     country = request.args.get('country')
     df_processed = space_df.copy()
+    df_processed = df_processed[~df_processed['Collaborating Countries'].isna() & (df_processed['Collaborating Countries'] != '')]
     df_processed['Collaborating Countries_list'] = df_processed['Collaborating Countries'].str.split(',')
     new_df = df_processed.explode('Collaborating Countries_list')[['Country', 'Collaborating Countries_list']].copy() # 只选取我们需要的列
     new_df.rename(columns={'Collaborating Countries_list': 'Collaborating Countries'}, inplace=True)
