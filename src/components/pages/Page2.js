@@ -1,17 +1,13 @@
-/*
- * @Author: userName userEmail
- * @Date: 2025-05-20 19:47:04
- * @LastEditors: userName userEmail
- * @LastEditTime: 2025-05-22 14:45:36
- * @FilePath: \visualization\visualization\src\components\pages\Page2.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 import React, { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
 
 function Page2() {
-    const chartRef = useRef(null);
-    const [pieData, setPieData] = useState([]);
+    const chartRef1 = useRef(null);
+    const chartRef2 = useRef(null);
+    const chartRef3 = useRef(null);
+    const [pieData1, setPieData1] = useState([]); // 任务类型
+    const [pieData2, setPieData2] = useState([]); // 卫星类型
+    const [pieData3, setPieData3] = useState([]); // 使用技术
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [country, setCountry] = useState('USA');
@@ -31,12 +27,26 @@ function Page2() {
                 const res = await fetch(`http://127.0.0.1:5000/api/v1/pie?country=${country}`);
                 const result = await res.json();
                 if (result.code === 200 && result.data && result.data.length > 0) {
-                    // result.data[0] 是任务类型的统计 [['MissionType1', 10], ...]
-                    const data = result.data[0].map(item => ({
+                    // 解析任务类型数据
+                    const data1 = result.data[0].map(item => ({
                         name: item[0],
                         value: item[1]
                     }));
-                    setPieData(data);
+                    setPieData1(data1);
+
+                    // 解析卫星类型数据
+                    const data2 = result.data[1].map(item => ({
+                        name: item[0],
+                        value: item[1]
+                    }));
+                    setPieData2(data2);
+
+                    // 解析使用技术数据
+                    const data3 = result.data[2].map(item => ({
+                        name: item[0],
+                        value: item[1]
+                    }));
+                    setPieData3(data3);
                 } else {
                     setError('数据获取失败');
                 }
@@ -49,47 +59,58 @@ function Page2() {
         fetchPieData();
     }, [country]);
 
-    useEffect(() => {
-        if (!loading && !error && chartRef.current) {
-            const myChart = echarts.init(chartRef.current);
-            const option = {
-                title: {
-                    text: `${country} 各任务类型占比`,
-                    subtext: '数据来源：后端API',
-                    left: 'center'
-                },
-                tooltip: {
-                    trigger: 'item'
-                },
-                legend: {
-                    orient: 'vertical',
-                    left: 'left'
-                },
-                series: [
-                    {
-                        name: '任务类型',
-                        type: 'pie',
-                        radius: '50%',
-                        data: pieData,
-                        emphasis: {
-                            itemStyle: {
-                                shadowBlur: 10,
-                                shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
+    const initChart = (chartInstance, data, title) => {
+        const option = {
+            title: {
+                text: `${country} ${title}占比`,
+                subtext: '数据来源：后端API',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left'
+            },
+            series: [
+                {
+                    name: title,
+                    type: 'pie',
+                    radius: '50%',
+                    data: data,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
                         }
                     }
-                ]
-            };
-            myChart.setOption(option);
-            // 响应式
-            window.addEventListener('resize', myChart.resize);
-            return () => {
-                myChart.dispose();
-                window.removeEventListener('resize', myChart.resize);
-            };
+                }
+            ]
+        };
+        chartInstance.setOption(option);
+        window.addEventListener('resize', chartInstance.resize);
+        return () => {
+            chartInstance.dispose();
+            window.removeEventListener('resize', chartInstance.resize);
+        };
+    };
+
+    useEffect(() => {
+        if (!loading && !error && chartRef1.current) {
+            const myChart1 = echarts.init(chartRef1.current);
+            initChart(myChart1, pieData1, '任务类型');
         }
-    }, [pieData, loading, error, country]);
+        if (!loading && !error && chartRef2.current) {
+            const myChart2 = echarts.init(chartRef2.current);
+            initChart(myChart2, pieData2, '卫星类型');
+        }
+        if (!loading && !error && chartRef3.current) {
+            const myChart3 = echarts.init(chartRef3.current);
+            initChart(myChart3, pieData3, '使用技术');
+        }
+    }, [pieData1, pieData2, pieData3, loading, error, country]);
 
     return (
         <div
@@ -192,23 +213,62 @@ function Page2() {
           {/* 图表卡片 */}
           <div
             style={{
-              width: 640,
-              height: 440,
-              background: 'rgba(255,255,255,0.55)',
-              borderRadius: 28,
-              boxShadow: '0 16px 48px 0 rgba(31, 38, 135, 0.22)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
               display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: 10,
-              border: '1px solid rgba(255,255,255,0.25)',
+              justifyContent: 'space-between',
+              width: '100%',
+              maxWidth: 960,
             }}
           >
-            <div ref={chartRef} style={{ width: 540, height: 360 }} />
+            <div
+              ref={chartRef1}
+              style={{
+                width: 300,
+                height: 300,
+                background: 'rgba(255,255,255,0.55)',
+                borderRadius: 28,
+                boxShadow: '0 16px 48px 0 rgba(31, 38, 135, 0.22)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid rgba(255,255,255,0.25)',
+              }}
+            />
+            <div
+              ref={chartRef2}
+              style={{
+                width: 300,
+                height: 300,
+                background: 'rgba(255,255,255,0.55)',
+                borderRadius: 28,
+                boxShadow: '0 16px 48px 0 rgba(31, 38, 135, 0.22)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid rgba(255,255,255,0.25)',
+              }}
+            />
+            <div
+              ref={chartRef3}
+              style={{
+                width: 300,
+                height: 300,
+                background: 'rgba(255,255,255,0.55)',
+                borderRadius: 28,
+                boxShadow: '0 16px 48px 0 rgba(31, 38, 135, 0.22)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid rgba(255,255,255,0.25)',
+              }}
+            />
           </div>
         </div>
       );
 }
-export default Page2; 
+export default Page2;
