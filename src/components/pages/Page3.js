@@ -128,13 +128,13 @@ function Page3() {
                     Math.pow(item[2], 0.5),
                     
                     // 成功率
-                    (item[3] * 10 - 920) / 8.5,
+                    (item[3] * 10 - 870) / 20,
                     
                     // 环境影响
-                    Math.pow(item[4] - 1.2, 1.5),
+                    6 - Math.pow(item[4] - 1.2, 1.5),
                     
                     // 持续时间
-                    (item[5] - 173) / 3,
+                    (item[5] - 160) / 6,
                 ],
                 areaStyle: {
                     opacity: 0.3
