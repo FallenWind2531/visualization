@@ -94,6 +94,22 @@ function Page5() {
         // 获取所有技术类型
         const types = [...new Set(rawData.map(item => item[0]))];
         
+        // 调整types的顺序，确保Traditional Rocket在第一位，Reusable Rocket在第二位
+        const traditionalIndex = types.findIndex(type => type === 'Traditional Rocket');
+        const reusableIndex = types.findIndex(type => type === 'Reusable Rocket');
+        
+        if (traditionalIndex !== -1 && reusableIndex !== -1) {
+            // 从数组中移除这两项
+            const traditional = types.splice(traditionalIndex, 1)[0];
+            // 重新计算reusable的索引，因为如果traditional在reusable之前被移除，索引会变化
+            const newReusableIndex = types.findIndex(type => type === 'Reusable Rocket');
+            const reusable = types.splice(newReusableIndex, 1)[0];
+            
+            // 将traditional放在第一位，reusable放在第二位
+            types.unshift(reusable);
+            types.unshift(traditional);
+        }
+        
         // 为每种类型创建系列数据
         const series = types.map(type => {
             const data = years.map(year => {
@@ -182,6 +198,25 @@ function Page5() {
         if (!chartDom) return;
 
         const myChart = echarts.init(chartDom);
+        
+        // 定义颜色映射，使用更浅的颜色
+        const colorMap = {
+            'Traditional Rocket': '#e06666',  // 更亮的红色系
+            'Solar Propulsion': '#fbc357',    // 黄色系
+            'AI Navigation': '#51689b',       // 蓝色系
+            'Reusable Rocket': ' #93c47d'      // 适中亮度的绿色
+        };
+        
+        // 为每个系列设置颜色
+        const seriesWithColors = technologyData.series.map(series => {
+            return {
+                ...series,
+                itemStyle: {
+                    color: colorMap[series.name] || undefined  // 如果没有定义颜色，则使用默认颜色
+                }
+            };
+        });
+        
         const option = {
             title: {
                 text: '技术使用年度分布',
@@ -215,7 +250,7 @@ function Page5() {
                 type: 'value',
                 name: '任务数量'
             },
-            series: technologyData.series
+            series: seriesWithColors
         };
 
         myChart.setOption(option);

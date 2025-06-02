@@ -87,7 +87,7 @@ function Page3() {
         count: { min: 0, max: 500 },       // 航天任务数量
         budget: { min: 0, max: 50 },       // 平均投入(十亿$)
         successRate: { min: 50, max: 100 }, // 成功率
-        envImpact: { min: 1, max: 5 },     // 环境影响
+        envImpact: { min: 1, max: 10 },     // 环境影响
         duration: { min: 0, max: 365 }     // 持续时间(天)
     };
 
@@ -125,13 +125,13 @@ function Page3() {
                     (item[1] - 200) / 25,
                     
                     // 预算 
-                    (item[2] * 10 - 240) / 5,
+                    Math.pow(item[2], 0.5),
                     
                     // 成功率
-                    (item[3] * 10 - 730) / 7,
+                    (item[3] * 10 - 920) / 8.5,
                     
                     // 环境影响
-                    (item[4] * 100 - 297) < 0 ? 0.5 : (item[4] * 100 - 297),
+                    Math.pow(item[4] - 1.2, 1.5),
                     
                     // 持续时间
                     (item[5] - 173) / 3,

@@ -78,7 +78,7 @@ function Page4() {
         // 准备节点数据
         const nodes = countryList.map(country => ({
             name: country,
-            symbolSize: Math.pow(countryTotalTasks[country] - 400, 1.25) * 0.15,
+            symbolSize: Math.pow(countryTotalTasks[country] - 200, 1.25) * 0.1,
             value: countryTotalTasks[country],
             category: country,
             itemStyle: {
@@ -152,12 +152,6 @@ function Page4() {
         const myChart = echarts.init(chartDom);
 
         const option = {
-            title: {
-                text: '国家航天任务合作关系',
-                subtext: '环形布局',
-                top: 'bottom',
-                left: 'right'
-            },
             tooltip: {
                 trigger: 'item',
                 formatter: function(params) {
@@ -170,7 +164,8 @@ function Page4() {
             legend: [{
                 data: chartData.categories.map(function(a) {
                     return a.name;
-                })
+                }),
+                top: 10,
             }],
             animationDurationUpdate: 1500,
             animationEasingUpdate: 'quinticInOut',
@@ -253,7 +248,18 @@ function Page4() {
                     </div>
                 </div>
             ) : (
-                <div id="chordChart" style={{ width: '100%', height: '800px', marginTop: 80 }}></div>
+                <>
+                    <h2 style={{ 
+                        fontSize: '24px', 
+                        fontWeight: 'bold', 
+                        marginBottom: '20px', 
+                        textAlign: 'center',
+                        marginTop: '60px'
+                    }}>
+                        国家航天任务合作关系
+                    </h2>
+                    <div id="chordChart" style={{ width: '100%', height: '800px' }}></div>
+                </>
             )}
             <style>{`
             /* New Wifi Loader CSS */
