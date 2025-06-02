@@ -131,7 +131,7 @@ function Page1() {
              if (duration == null || duration <= 0) return 5; // 默认一个较小的大小
              // 调整比例因子和基础大小，使气泡大小与 Duration 关联并可视化
              // 假设 Duration 范围在几十到几百天，sqrt 可能是一个好的映射方式
-             const scaleFactor = 0.2; // 根据实际 Duration 范围调整
+             const scaleFactor = 0.8; // 根据实际 Duration 范围调整
              const baseSize = 5; // 调整最小气泡大小
              const size = Math.sqrt(duration / scaleFactor) + baseSize;
              // console.log(`Duration: ${duration}, Size: ${size}`); // 打印 Duration 和计算出的气泡大小
