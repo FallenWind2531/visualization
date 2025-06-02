@@ -131,8 +131,8 @@ function Page1() {
              if (duration == null || duration <= 0) return 5; // 默认一个较小的大小
              // 调整比例因子和基础大小，使气泡大小与 Duration 关联并可视化
              // 假设 Duration 范围在几十到几百天，sqrt 可能是一个好的映射方式
-             const scaleFactor = 0.02; // 根据实际 Duration 范围调整
-             const baseSize = 10; // 调整最小气泡大小
+             const scaleFactor = 0.2; // 根据实际 Duration 范围调整
+             const baseSize = 5; // 调整最小气泡大小
              const size = Math.sqrt(duration / scaleFactor) + baseSize;
              // console.log(`Duration: ${duration}, Size: ${size}`); // 打印 Duration 和计算出的气泡大小
              return size;
@@ -233,11 +233,11 @@ function Page1() {
                       }
                  },
                  // 根据实际 GDP 数据范围调整 min/max，对数轴min > 0
-                 min: 100000000000, // 调整对数轴最小值，例如 10 Billion $
+                 min: 500000000000, // 调整对数轴最小值，例如 10 Billion $
                  max: 35000000000000, // 调整对数轴最大值
             },
             yAxis: {
-                type: 'value',
+                type: 'log',
                 name: '航天任务投入成本 (Billion $)',
                  nameTextStyle: {
                      fontSize: 14
@@ -249,8 +249,8 @@ function Page1() {
                      formatter: '{value} B$'
                  },
                  // 根据实际 Budget 数据范围调整 min/max
-                 min: 0,
-                 max: 50, // 假设最大预算 100 Billion $
+                 min: 0.5,
+                 max: 300, // 假设最大预算 400 Billion $
             },
             visualMap: [{
                 show: true,

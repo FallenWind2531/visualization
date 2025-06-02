@@ -63,7 +63,8 @@ function Page2() {
     const initChart = (chartInstance, data, title) => {
         const option = {
             tooltip: {
-                trigger: 'item'
+                trigger: 'item',
+                formatter: '{b}:({d}%)'
             },
             legend: {
                 orient: 'horizontal',
@@ -77,6 +78,10 @@ function Page2() {
                     radius: '60%',
                     center: ['50%', '55%'],
                     data: data,
+                    label: {
+                        show: true,
+                        formatter: '{b}: {d}%'
+                    },
                     emphasis: {
                         itemStyle: {
                             shadowBlur: 10,
