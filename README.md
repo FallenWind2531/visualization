@@ -1,42 +1,39 @@
-本项目仅限用于2024年浙江大学暑期学校课程项目模板。
+# 航天数据可视化项目
+
+## 环境要求
+
+- **Node.js**: v20.15.0 或更高版本
+- **npm**: 10.8.2 或更高版本
 
 ## 如何启动本项目
+   
+1. 在项目文件夹内，安装依赖并运行项目：
 
-1. 使用git命令，将本项目同步到本地：
+   ```bash
+   # 安装所有依赖库
+   npm install
+   
+   # 启动前端
+   npm start
+   
+   # 启动后端服务 (在另一个终端窗口中)
+   cd python
+   python main.py
+   ```
+   
+   正常运行后，前端将在 http://localhost:3000 启动，后端API服务将在 http://127.0.0.1:5000 运行。
+   
+## 本项目已安装的库
 
-   `git clone https://github.com/susicaliu/ZJU_SummerSchool_ProjectTemplate.git`
-   
-2. 在项目文件夹内，使用git命令，修改remote到你们小组的仓库：
+   - **react-router-dom** - React路由管理
+   - **antd** - 基于React的UI组件库，提供丰富的界面元素
+   - **echarts-for-react** - 基于Apache ECharts的React封装，用于数据可视化
+   - **papaparse** - 高性能CSV解析库，用于处理CSV文件数据
 
-   将原来的远程仓库重命名：`git remote rename origin template-origin`
-   
-   添加你的远程仓库地址：`git remote add origin your_remote_url`
-   
-   添加文件修改：`git add .`
-   
-   提交文件修改：`git commit -m "Initial Commit"`
-   
-   上传：`git push -u origin master`
-   
-3. 在项目文件夹内，使用npm运行项目：
+## 常见问题
 
-   安装所有依赖库：`npm install`
-   
-   运行项目：`npm start`
-   
-   如果能正常运行，你应该可以看到浏览器中出现四个区域: Control Panel, Overview, Assist View, Detail View。Control Panel中有按钮和下拉框，Overview中有柱状图，Detail View中有地图。单击"add"或"minus"按钮，数字会同时发生变化。
-   
-   
-## 本项目目前已安装的库
+- 如果后端服务启动失败，确保已安装必要的Python包：
+  ```bash
+  pip install flask flask-cors pandas numpy
+  ```
 
-1. AntD
-
-   UI组件库
-   
-1. echarts-for-react
-
-   可视化库
-
-1. papaparse
-
-   解析.csv文件
